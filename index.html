@@ -1,0 +1,5316 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ثانوية الشيخ عبدالعزيز بن باز | المقصف المدرسي</title>
+
+<meta name="theme-color" content="#0d6552">
+<meta name="description" content="النظام الإلكتروني للمقصف المدرسي">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+    --green:#0d6552;
+    --green-dark:#084b3e;
+    --green-deep:#06382f;
+    --green-light:#eaf5f1;
+
+    --gold:#b99854;
+    --gold-light:#f5efdf;
+
+    --white:#ffffff;
+    --bg:#f5f7f6;
+
+    --text:#17231f;
+    --muted:#73807c;
+
+    --border:#e3e9e6;
+
+    --danger:#c84c4c;
+    --orange:#c98a32;
+    --blue:#3c73a0;
+
+    --shadow:0 12px 35px rgba(15,47,39,.07);
+
+    --radius:18px;
+}
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:"Tajawal",sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    min-height:100vh;
+}
+
+button,
+input,
+select{
+    font-family:inherit;
+}
+
+button{
+    cursor:pointer;
+}
+
+a{
+    color:inherit;
+    text-decoration:none;
+}
+
+/* =========================
+   شاشة التحميل
+========================= */
+
+.loading-screen{
+    position:fixed;
+    inset:0;
+    background:#fff;
+    z-index:99999;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition:.35s;
+}
+
+.loading-box{
+    text-align:center;
+}
+
+.loading-logo{
+    width:72px;
+    height:72px;
+    border-radius:20px;
+    background:var(--green);
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin:auto;
+    box-shadow:0 15px 35px rgba(13,101,82,.2);
+}
+
+.loading-logo svg{
+    width:34px;
+    height:34px;
+}
+
+.loading-box h3{
+    margin-top:18px;
+    font-size:18px;
+}
+
+.loading-box p{
+    color:var(--muted);
+    font-size:13px;
+    margin-top:6px;
+}
+
+.loader{
+    width:30px;
+    height:30px;
+    border:3px solid #e3ece8;
+    border-top-color:var(--green);
+    border-radius:50%;
+    animation:spin .8s linear infinite;
+    margin:20px auto 0;
+}
+
+@keyframes spin{
+    to{transform:rotate(360deg)}
+}
+
+/* =========================
+   Sidebar
+========================= */
+
+.sidebar{
+    position:fixed;
+    right:0;
+    top:0;
+    bottom:0;
+    width:280px;
+    background:#fff;
+    border-left:1px solid var(--border);
+    z-index:1000;
+    transition:.3s ease;
+    display:flex;
+    flex-direction:column;
+}
+
+.sidebar.collapsed{
+    width:82px;
+}
+
+.sidebar-head{
+    min-height:92px;
+    padding:20px;
+    border-bottom:1px solid var(--border);
+    display:flex;
+    align-items:center;
+    gap:13px;
+}
+
+.school-mark{
+    flex:none;
+    width:48px;
+    height:48px;
+    border-radius:15px;
+    background:var(--green);
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.school-mark svg{
+    width:25px;
+    height:25px;
+}
+
+.school-info{
+    min-width:0;
+    transition:.2s;
+}
+
+.school-info strong{
+    display:block;
+    font-size:14px;
+    font-weight:800;
+    line-height:1.5;
+}
+
+.school-info span{
+    display:block;
+    color:var(--muted);
+    font-size:11px;
+    margin-top:2px;
+}
+
+.sidebar.collapsed .school-info{
+    display:none;
+}
+
+.sidebar-menu{
+    padding:18px 12px;
+    overflow:auto;
+    flex:1;
+}
+
+.menu-title{
+    color:#9aa6a2;
+    font-size:10px;
+    font-weight:700;
+    padding:0 12px 10px;
+}
+
+.menu-item{
+    width:100%;
+    border:0;
+    background:transparent;
+    color:#63716d;
+    min-height:48px;
+    padding:0 13px;
+    margin-bottom:5px;
+    border-radius:13px;
+    display:flex;
+    align-items:center;
+    gap:13px;
+    text-align:right;
+    font-size:14px;
+    font-weight:600;
+    transition:.2s;
+}
+
+.menu-item svg{
+    width:20px;
+    height:20px;
+    flex:none;
+}
+
+.menu-item:hover{
+    background:var(--green-light);
+    color:var(--green);
+}
+
+.menu-item.active{
+    background:var(--green);
+    color:#fff;
+    box-shadow:0 8px 18px rgba(13,101,82,.15);
+}
+
+.sidebar.collapsed .menu-item{
+    justify-content:center;
+    padding:0;
+}
+
+.sidebar.collapsed .menu-item span{
+    display:none;
+}
+
+.sidebar-bottom{
+    padding:14px;
+    border-top:1px solid var(--border);
+}
+
+.collapse-btn{
+    width:100%;
+    height:44px;
+    border:1px solid var(--border);
+    background:#fff;
+    color:var(--muted);
+    border-radius:12px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.collapse-btn svg{
+    width:19px;
+    height:19px;
+}
+
+/* =========================
+   Main
+========================= */
+
+.main{
+    margin-right:280px;
+    min-height:100vh;
+    transition:.3s ease;
+}
+
+.sidebar.collapsed ~ .main{
+    margin-right:82px;
+}
+
+.topbar{
+    height:76px;
+    background:rgba(255,255,255,.95);
+    border-bottom:1px solid var(--border);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 30px;
+    position:sticky;
+    top:0;
+    z-index:500;
+    backdrop-filter:blur(12px);
+}
+
+.topbar-title{
+    font-weight:800;
+    font-size:17px;
+}
+
+.topbar-sub{
+    color:var(--muted);
+    font-size:11px;
+    margin-top:3px;
+}
+
+.topbar-left{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.icon-btn{
+    width:42px;
+    height:42px;
+    border:1px solid var(--border);
+    border-radius:12px;
+    background:#fff;
+    color:var(--green);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+}
+
+.icon-btn svg{
+    width:20px;
+    height:20px;
+}
+
+.cart-count{
+    position:absolute;
+    top:-5px;
+    left:-5px;
+    min-width:19px;
+    height:19px;
+    padding:0 5px;
+    background:var(--danger);
+    color:#fff;
+    border-radius:20px;
+    font-size:10px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:800;
+}
+
+/* =========================
+   Pages
+========================= */
+
+.page{
+    display:none;
+    padding:30px;
+    max-width:1500px;
+    margin:auto;
+}
+
+.page.active{
+    display:block;
+}
+
+/* =========================
+   Hero
+========================= */
+
+.hero{
+    background:
+        linear-gradient(
+            135deg,
+            var(--green-deep),
+            var(--green)
+        );
+    border-radius:24px;
+    min-height:280px;
+    padding:38px;
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:30px;
+    overflow:hidden;
+    position:relative;
+    box-shadow:0 20px 45px rgba(6,56,47,.16);
+}
+
+.hero::after{
+    content:"";
+    position:absolute;
+    width:330px;
+    height:330px;
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:50%;
+    left:-80px;
+    bottom:-170px;
+}
+
+.hero-content{
+    position:relative;
+    z-index:2;
+    max-width:700px;
+}
+
+.hero-label{
+    display:inline-flex;
+    align-items:center;
+    gap:7px;
+    padding:7px 12px;
+    background:rgba(255,255,255,.09);
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:30px;
+    font-size:11px;
+    margin-bottom:18px;
+}
+
+.hero-label span{
+    width:7px;
+    height:7px;
+    background:#77d5b8;
+    border-radius:50%;
+}
+
+.hero h1{
+    font-size:31px;
+    line-height:1.4;
+    font-weight:800;
+}
+
+.hero p{
+    color:rgba(255,255,255,.76);
+    margin-top:11px;
+    line-height:1.8;
+    font-size:14px;
+}
+
+.hero-actions{
+    display:flex;
+    gap:10px;
+    margin-top:24px;
+    flex-wrap:wrap;
+}
+
+.btn{
+    border:0;
+    border-radius:12px;
+    min-height:44px;
+    padding:0 18px;
+    font-size:13px;
+    font-weight:700;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    transition:.2s;
+}
+
+.btn svg{
+    width:18px;
+    height:18px;
+}
+
+.btn-primary{
+    background:#fff;
+    color:var(--green-dark);
+}
+
+.btn-primary:hover{
+    transform:translateY(-1px);
+}
+
+.btn-outline{
+    background:transparent;
+    border:1px solid rgba(255,255,255,.2);
+    color:#fff;
+}
+
+.btn-green{
+    background:var(--green);
+    color:#fff;
+}
+
+.btn-green:hover{
+    background:var(--green-dark);
+}
+
+.btn-light{
+    background:var(--green-light);
+    color:var(--green);
+}
+
+.btn-danger{
+    background:#fff0f0;
+    color:var(--danger);
+}
+
+.hero-card{
+    width:260px;
+    flex:none;
+    background:rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:20px;
+    padding:22px;
+    position:relative;
+    z-index:2;
+}
+
+.hero-card-top{
+    color:rgba(255,255,255,.65);
+    font-size:11px;
+}
+
+.hero-card-number{
+    font-size:28px;
+    font-weight:800;
+    margin-top:9px;
+}
+
+.hero-card-note{
+    color:rgba(255,255,255,.6);
+    font-size:11px;
+    margin-top:5px;
+}
+
+/* =========================
+   Sections
+========================= */
+
+.section-head{
+    display:flex;
+    align-items:end;
+    justify-content:space-between;
+    gap:15px;
+    margin:32px 0 16px;
+}
+
+.section-head h2{
+    font-size:19px;
+    font-weight:800;
+}
+
+.section-head p{
+    color:var(--muted);
+    font-size:12px;
+    margin-top:4px;
+}
+
+.link-btn{
+    border:0;
+    background:transparent;
+    color:var(--green);
+    font-size:12px;
+    font-weight:700;
+}
+
+/* =========================
+   Categories
+========================= */
+
+.categories{
+    display:flex;
+    gap:10px;
+    overflow:auto;
+    padding-bottom:5px;
+}
+
+.category{
+    border:1px solid var(--border);
+    background:#fff;
+    color:#64726e;
+    border-radius:12px;
+    min-width:max-content;
+    height:42px;
+    padding:0 16px;
+    font-weight:600;
+    font-size:12px;
+}
+
+.category.active{
+    background:var(--green);
+    color:#fff;
+    border-color:var(--green);
+}
+
+/* =========================
+   Products
+========================= */
+
+.products-grid{
+    display:grid;
+    grid-template-columns:
+        repeat(4,minmax(0,1fr));
+    gap:15px;
+}
+
+.product-card{
+    background:#fff;
+    border:1px solid var(--border);
+    border-radius:18px;
+    padding:13px;
+    transition:.2s;
+}
+
+.product-card:hover{
+    transform:translateY(-2px);
+    box-shadow:var(--shadow);
+}
+
+.product-image{
+    height:155px;
+    border-radius:14px;
+    background:#f1f6f4;
+    color:var(--green);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin-bottom:13px;
+}
+
+.product-image svg{
+    width:60px;
+    height:60px;
+}
+
+.product-category{
+    color:var(--green);
+    font-size:10px;
+    font-weight:700;
+}
+
+.product-name{
+    font-size:15px;
+    font-weight:800;
+    margin-top:5px;
+}
+
+.product-bottom{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-top:13px;
+    gap:8px;
+}
+
+.price{
+    font-weight:800;
+    color:var(--text);
+    font-size:14px;
+}
+
+.price small{
+    color:var(--muted);
+    font-size:10px;
+    font-weight:500;
+}
+
+.add-btn{
+    border:0;
+    width:38px;
+    height:38px;
+    border-radius:11px;
+    background:var(--green);
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.add-btn svg{
+    width:18px;
+    height:18px;
+}
+
+/* =========================
+   Search
+========================= */
+
+.search-box{
+    position:relative;
+    max-width:400px;
+}
+
+.search-box input{
+    width:100%;
+    height:46px;
+    border:1px solid var(--border);
+    background:#fff;
+    border-radius:13px;
+    padding:0 43px 0 14px;
+    outline:0;
+    font-size:13px;
+}
+
+.search-box svg{
+    position:absolute;
+    right:14px;
+    top:14px;
+    width:18px;
+    height:18px;
+    color:var(--muted);
+}
+
+/* =========================
+   Cards / Forms
+========================= */
+
+.card{
+    background:#fff;
+    border:1px solid var(--border);
+    border-radius:18px;
+    padding:22px;
+}
+
+.form-card{
+    max-width:700px;
+    margin:auto;
+}
+
+.form-grid{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:14px;
+}
+
+.form-group{
+    margin-bottom:14px;
+}
+
+.form-group.full{
+    grid-column:1/-1;
+}
+
+.form-group label{
+    display:block;
+    font-size:12px;
+    font-weight:700;
+    margin-bottom:7px;
+}
+
+.form-group input,
+.form-group select{
+    width:100%;
+    height:46px;
+    border:1px solid var(--border);
+    border-radius:12px;
+    outline:0;
+    padding:0 13px;
+    background:#fff;
+    font-size:13px;
+    color:var(--text);
+}
+
+.form-group input:focus,
+.form-group select:focus{
+    border-color:var(--green);
+    box-shadow:0 0 0 3px rgba(13,101,82,.07);
+}
+
+.phone-hint{
+    font-size:10px;
+    color:var(--muted);
+    margin-top:5px;
+}
+
+.form-actions{
+    display:flex;
+    gap:10px;
+    margin-top:8px;
+}
+
+.form-actions .btn{
+    flex:1;
+}
+
+/* =========================
+   Login
+========================= */
+
+.auth-wrap{
+    max-width:520px;
+    margin:20px auto;
+}
+
+.auth-head{
+    text-align:center;
+    margin-bottom:24px;
+}
+
+.auth-mark{
+    width:65px;
+    height:65px;
+    border-radius:18px;
+    background:var(--green);
+    color:#fff;
+    margin:0 auto 15px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.auth-mark svg{
+    width:30px;
+    height:30px;
+}
+
+.auth-head h2{
+    font-size:23px;
+    font-weight:800;
+}
+
+.auth-head p{
+    color:var(--muted);
+    font-size:12px;
+    margin-top:6px;
+}
+
+.auth-tabs{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    padding:4px;
+    background:#f0f4f2;
+    border-radius:12px;
+    margin-bottom:20px;
+}
+
+.auth-tab{
+    height:40px;
+    border:0;
+    background:transparent;
+    border-radius:9px;
+    color:var(--muted);
+    font-weight:700;
+    font-size:12px;
+}
+
+.auth-tab.active{
+    background:#fff;
+    color:var(--green);
+    box-shadow:0 2px 8px rgba(0,0,0,.04);
+}
+
+/* =========================
+   Cart
+========================= */
+
+.cart-layout{
+    display:grid;
+    grid-template-columns:minmax(0,1.5fr) minmax(280px,.7fr);
+    gap:18px;
+}
+
+.cart-list{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+.cart-item{
+    background:#fff;
+    border:1px solid var(--border);
+    border-radius:16px;
+    padding:14px;
+    display:flex;
+    align-items:center;
+    gap:13px;
+}
+
+.cart-item-icon{
+    width:60px;
+    height:60px;
+    border-radius:13px;
+    background:var(--green-light);
+    color:var(--green);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex:none;
+}
+
+.cart-item-icon svg{
+    width:30px;
+    height:30px;
+}
+
+.cart-item-info{
+    min-width:0;
+    flex:1;
+}
+
+.cart-item-info strong{
+    display:block;
+    font-size:13px;
+}
+
+.cart-item-info small{
+    color:var(--muted);
+    font-size:10px;
+}
+
+.quantity{
+    display:flex;
+    align-items:center;
+    border:1px solid var(--border);
+    border-radius:10px;
+    overflow:hidden;
+}
+
+.quantity button{
+    border:0;
+    background:#fff;
+    width:32px;
+    height:32px;
+    color:var(--green);
+    font-size:17px;
+}
+
+.quantity span{
+    width:30px;
+    text-align:center;
+    font-size:12px;
+    font-weight:800;
+}
+
+.remove-item{
+    border:0;
+    background:#fff2f2;
+    color:var(--danger);
+    width:32px;
+    height:32px;
+    border-radius:9px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.remove-item svg{
+    width:16px;
+    height:16px;
+}
+
+.summary{
+    position:sticky;
+    top:95px;
+}
+
+.summary h3{
+    font-size:15px;
+    margin-bottom:18px;
+}
+
+.summary-row{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:12px;
+    color:#6d7a76;
+    font-size:12px;
+}
+
+.summary-row.total{
+    border-top:1px solid var(--border);
+    padding-top:14px;
+    color:var(--text);
+    font-size:15px;
+    font-weight:800;
+}
+
+.payment-title{
+    font-size:12px;
+    font-weight:800;
+    margin:20px 0 9px;
+}
+
+.payment-options{
+    display:grid;
+    gap:8px;
+}
+
+.payment-option{
+    border:1px solid var(--border);
+    background:#fff;
+    border-radius:12px;
+    min-height:50px;
+    padding:10px 12px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    cursor:pointer;
+}
+
+.payment-option.active{
+    border-color:var(--green);
+    background:var(--green-light);
+}
+
+.payment-radio{
+    width:17px;
+    height:17px;
+    border:2px solid #bbc7c3;
+    border-radius:50%;
+    position:relative;
+}
+
+.payment-option.active .payment-radio{
+    border-color:var(--green);
+}
+
+.payment-option.active .payment-radio::after{
+    content:"";
+    position:absolute;
+    width:7px;
+    height:7px;
+    border-radius:50%;
+    background:var(--green);
+    inset:3px;
+}
+
+.payment-info strong{
+    display:block;
+    font-size:12px;
+}
+
+.payment-info span{
+    color:var(--muted);
+    font-size:9px;
+}
+
+.empty{
+    padding:55px 20px;
+    text-align:center;
+    background:#fff;
+    border:1px solid var(--border);
+    border-radius:18px;
+}
+
+.empty-icon{
+    width:60px;
+    height:60px;
+    border-radius:16px;
+    background:var(--green-light);
+    color:var(--green);
+    margin:auto;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.empty-icon svg{
+    width:28px;
+    height:28px;
+}
+
+.empty h3{
+    margin-top:13px;
+    font-size:16px;
+}
+
+.empty p{
+    color:var(--muted);
+    font-size:11px;
+    margin-top:5px;
+}
+
+/* =========================
+   Orders
+========================= */
+
+.orders-list{
+    display:grid;
+    gap:12px;
+}
+
+.order-card{
+    background:#fff;
+    border:1px solid var(--border);
+    border-radius:17px;
+    padding:18px;
+}
+
+.order-top{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+}
+
+.order-number{
+    font-size:14px;
+    font-weight:800;
+}
+
+.order-date{
+    color:var(--muted);
+    font-size:10px;
+    margin-top:4px;
+}
+
+.status{
+    display:inline-flex;
+    align-items:center;
+    min-height:29px;
+    padding:0 10px;
+    border-radius:30px;
+    font-size:10px;
+    font-weight:800;
+}
+
+.status.new{
+    background:#fff5df;
+    color:#a96b14;
+}
+
+.status.preparing{
+    background:#eaf2fb;
+    color:#3971a0;
+}
+
+.status.ready{
+    background:#e8f6ef;
+    color:#23805b;
+}
+
+.status.done{
+    background:#edf0ef;
+    color:#65716e;
+}
+
+.order-products{
+    margin-top:14px;
+    padding-top:13px;
+    border-top:1px solid var(--border);
+    color:#687671;
+    font-size:12px;
+    line-height:1.9;
+}
+
+.order-total{
+    margin-top:12px;
+    display:flex;
+    justify-content:space-between;
+    font-weight:800;
+    font-size:13px;
+}
+
+/* =========================
+   Profile
+========================= */
+
+.profile-head{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    margin-bottom:20px;
+}
+
+.avatar{
+    width:65px;
+    height:65px;
+    border-radius:18px;
+    background:var(--green);
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:22px;
+    font-weight:800;
+}
+
+.profile-head h2{
+    font-size:19px;
+}
+
+.profile-head p{
+    color:var(--muted);
+    font-size:11px;
+    margin-top:4px;
+}
+
+.profile-grid{
+    display:grid;
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:12px;
+}
+
+.info-box{
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:15px;
+    background:#fafcfb;
+}
+
+.info-box span{
+    color:var(--muted);
+    display:block;
+    font-size:10px;
+    margin-bottom:5px;
+}
+
+.info-box strong{
+    font-size:13px;
+}
+
+/* =========================
+   Toast
+========================= */
+
+.toast-container{
+    position:fixed;
+    left:22px;
+    bottom:22px;
+    z-index:99999;
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+}
+
+.toast{
+    background:#17231f;
+    color:#fff;
+    border-radius:12px;
+    padding:12px 15px;
+    min-width:240px;
+    max-width:360px;
+    font-size:12px;
+    box-shadow:0 15px 30px rgba(0,0,0,.15);
+    animation:toastIn .25s ease;
+}
+
+.toast.success{
+    background:var(--green);
+}
+
+.toast.error{
+    background:var(--danger);
+}
+
+@keyframes toastIn{
+    from{
+        transform:translateY(15px);
+        opacity:0;
+    }
+    to{
+        transform:translateY(0);
+        opacity:1;
+    }
+}
+
+/* =========================
+   Modal
+========================= */
+
+.modal{
+    position:fixed;
+    inset:0;
+    background:rgba(6,31,26,.55);
+    backdrop-filter:blur(5px);
+    z-index:5000;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+}
+
+.modal.show{
+    display:flex;
+}
+
+.modal-box{
+    width:100%;
+    max-width:460px;
+    background:#fff;
+    border-radius:20px;
+    padding:22px;
+    box-shadow:0 25px 70px rgba(0,0,0,.2);
+}
+
+.modal-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+}
+
+.modal-head h3{
+    font-size:17px;
+}
+
+.close-modal{
+    border:0;
+    width:35px;
+    height:35px;
+    border-radius:10px;
+    background:#f1f4f3;
+    color:var(--muted);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+/* =========================
+   Mada
+========================= */
+
+.mada-box{
+    border:1px solid var(--border);
+    border-radius:15px;
+    padding:17px;
+    background:#fafcfb;
+}
+
+.mada-logo{
+    font-size:23px;
+    font-weight:900;
+    color:#08794f;
+    margin-bottom:12px;
+}
+
+.mada-note{
+    font-size:11px;
+    color:var(--muted);
+    line-height:1.8;
+}
+
+/* =========================
+   Mobile Bottom
+========================= */
+
+.mobile-nav{
+    display:none;
+}
+
+/* =========================
+   Responsive
+========================= */
+
+@media(max-width:1150px){
+
+    .products-grid{
+        grid-template-columns:
+            repeat(3,minmax(0,1fr));
+    }
+
+    .hero-card{
+        width:220px;
+    }
+
+}
+
+@media(max-width:900px){
+
+    .sidebar{
+        display:none;
+    }
+
+    .main,
+    .sidebar.collapsed ~ .main{
+        margin-right:0;
+    }
+
+    .topbar{
+        height:67px;
+        padding:0 15px;
+    }
+
+    .page{
+        padding:18px 15px 95px;
+    }
+
+    .hero{
+        padding:25px;
+        min-height:auto;
+    }
+
+    .hero h1{
+        font-size:24px;
+    }
+
+    .hero-card{
+        display:none;
+    }
+
+    .products-grid{
+        grid-template-columns:
+            repeat(2,minmax(0,1fr));
+    }
+
+    .cart-layout{
+        grid-template-columns:1fr;
+    }
+
+    .summary{
+        position:static;
+    }
+
+    .profile-grid{
+        grid-template-columns:repeat(2,minmax(0,1fr));
+    }
+
+    .mobile-nav{
+        position:fixed;
+        bottom:10px;
+        left:10px;
+        right:10px;
+        height:67px;
+        background:rgba(255,255,255,.96);
+        border:1px solid var(--border);
+        border-radius:19px;
+        box-shadow:0 15px 40px rgba(12,46,38,.14);
+        z-index:3000;
+        display:grid;
+        grid-template-columns:repeat(3,1fr);
+        padding:6px;
+        backdrop-filter:blur(15px);
+    }
+
+    .mobile-nav button{
+        border:0;
+        background:transparent;
+        color:#82908b;
+        border-radius:14px;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        flex-direction:column;
+        gap:4px;
+        font-size:9px;
+        font-weight:700;
+    }
+
+    .mobile-nav button svg{
+        width:20px;
+        height:20px;
+    }
+
+    .mobile-nav button.active{
+        background:var(--green-light);
+        color:var(--green);
+    }
+
+}
+
+@media(max-width:600px){
+
+    .hero{
+        border-radius:19px;
+        padding:22px 19px;
+    }
+
+    .hero h1{
+        font-size:21px;
+    }
+
+    .hero p{
+        font-size:12px;
+    }
+
+    .section-head{
+        margin-top:25px;
+    }
+
+    .section-head h2{
+        font-size:16px;
+    }
+
+    .products-grid{
+        gap:10px;
+    }
+
+    .product-card{
+        padding:9px;
+        border-radius:15px;
+    }
+
+    .product-image{
+        height:125px;
+    }
+
+    .product-image svg{
+        width:48px;
+        height:48px;
+    }
+
+    .product-name{
+        font-size:13px;
+    }
+
+    .price{
+        font-size:12px;
+    }
+
+    .add-btn{
+        width:34px;
+        height:34px;
+    }
+
+    .form-grid{
+        grid-template-columns:1fr;
+    }
+
+    .form-group.full{
+        grid-column:auto;
+    }
+
+    .profile-grid{
+        grid-template-columns:1fr;
+    }
+
+    .cart-item{
+        flex-wrap:wrap;
+    }
+
+    .cart-item-info{
+        min-width:calc(100% - 78px);
+    }
+
+    .toast-container{
+        left:12px;
+        right:12px;
+        bottom:88px;
+    }
+
+    .toast{
+        max-width:none;
+        width:100%;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- =========================
+     SVG Icons
+========================= -->
+
+<svg style="display:none">
+
+<symbol id="i-home" viewBox="0 0 24 24">
+<path d="M3 10.5 12 3l9 7.5v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1v-9Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+</symbol>
+
+<symbol id="i-store" viewBox="0 0 24 24">
+<path d="M4 10v9a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-9M3 9l2-5h14l2 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+<path d="M3 9c0 1.3 1 2.3 2.3 2.3S7.6 10.3 7.6 9c0 1.3 1 2.3 2.3 2.3S12.2 10.3 12.2 9c0 1.3 1 2.3 2.3 2.3S16.8 10.3 16.8 9c0 1.3 1 2.3 2.3 2.3S21 10.3 21 9" fill="none" stroke="currentColor" stroke-width="1.8"/>
+</symbol>
+
+<symbol id="i-cart" viewBox="0 0 24 24">
+<path d="M3 4h2l2.1 11.1a2 2 0 0 0 2 1.6h8.8a2 2 0 0 0 1.9-1.4L21 8H6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="9" cy="20" r="1.2" fill="currentColor"/>
+<circle cx="18" cy="20" r="1.2" fill="currentColor"/>
+</symbol>
+
+<symbol id="i-orders" viewBox="0 0 24 24">
+<path d="M6 3h12v18H6zM9 7h6M9 11h6M9 15h4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+</symbol>
+
+<symbol id="i-user" viewBox="0 0 24 24">
+<circle cx="12" cy="8" r="3.5" fill="none" stroke="currentColor" stroke-width="1.8"/>
+<path d="M5 21c.8-4 3.1-6 7-6s6.2 2 7 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+</symbol>
+
+<symbol id="i-login" viewBox="0 0 24 24">
+<path d="M14 4h5v16h-5M10 8l4 4-4 4M14 12H3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+</symbol>
+
+<symbol id="i-plus" viewBox="0 0 24 24">
+<path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+</symbol>
+
+<symbol id="i-search" viewBox="0 0 24 24">
+<circle cx="10.8" cy="10.8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.8"/>
+<path d="m16 16 5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+</symbol>
+
+<symbol id="i-trash" viewBox="0 0 24 24">
+<path d="M5 7h14M10 4h4l1 3H9l1-3ZM8 10v8M12 10v8M16 10v8M6 7l1 14h10l1-14" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+</symbol>
+
+<symbol id="i-chevron-left" viewBox="0 0 24 24">
+<path d="m14 5-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</symbol>
+
+<symbol id="i-chevron-right" viewBox="0 0 24 24">
+<path d="m10 5 7 7-7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</symbol>
+
+<symbol id="i-school" viewBox="0 0 24 24">
+<path d="m3 9 9-5 9 5-9 5-9-5Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+<path d="M6 11v6M18 11v6M4 19h16M8 14h8v5H8z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+</symbol>
+
+<symbol id="i-wallet" viewBox="0 0 24 24">
+<path d="M4 6h15a2 2 0 0 1 2 2v10H5a2 2 0 0 1-2-2V7a1 1 0 0 1 1-1Z" fill="none" stroke="currentColor" stroke-width="1.8"/>
+<path d="M17 13h4M17 13a2 2 0 1 0 0 4h4v-4" fill="none" stroke="currentColor" stroke-width="1.8"/>
+</symbol>
+
+<symbol id="i-card" viewBox="0 0 24 24">
+<rect x="3" y="5" width="18" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/>
+<path d="M3 10h18M7 15h4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+</symbol>
+
+<symbol id="i-menu" viewBox="0 0 24 24">
+<path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+</symbol>
+
+<symbol id="i-close" viewBox="0 0 24 24">
+<path d="m6 6 12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+</symbol>
+
+<symbol id="i-lock" viewBox="0 0 24 24">
+<rect x="5" y="10" width="14" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/>
+<path d="M8 10V7a4 4 0 0 1 8 0v3" fill="none" stroke="currentColor" stroke-width="1.8"/>
+</symbol>
+
+<symbol id="i-check" viewBox="0 0 24 24">
+<path d="m5 12 4 4L19 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</symbol>
+
+<symbol id="i-package" viewBox="0 0 24 24">
+<path d="m4 7 8-4 8 4-8 4-8-4ZM4 7v10l8 4 8-4V7M12 11v10" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+</symbol>
+
+</svg>
+
+
+<!-- =========================
+     Loading
+========================= -->
+
+<div class="loading-screen" id="loadingScreen">
+
+    <div class="loading-box">
+
+        <div class="loading-logo">
+            <svg><use href="#i-school"></use></svg>
+        </div>
+
+        <h3>ثانوية الشيخ عبدالعزيز بن باز</h3>
+
+        <p>جاري تجهيز المقصف الإلكتروني</p>
+
+        <div class="loader"></div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     Sidebar
+========================= -->
+
+<aside class="sidebar" id="sidebar">
+
+    <div class="sidebar-head">
+
+        <div class="school-mark">
+            <svg><use href="#i-school"></use></svg>
+        </div>
+
+        <div class="school-info">
+            <strong>ثانوية الشيخ عبدالعزيز بن باز</strong>
+            <span>النظام الإلكتروني للمقصف</span>
+        </div>
+
+    </div>
+
+
+    <div class="sidebar-menu">
+
+        <div class="menu-title">القائمة الرئيسية</div>
+
+        <button class="menu-item active" data-page="home">
+            <svg><use href="#i-home"></use></svg>
+            <span>الرئيسية</span>
+        </button>
+
+        <button class="menu-item" data-page="store">
+            <svg><use href="#i-store"></use></svg>
+            <span>المقصف</span>
+        </button>
+
+        <button class="menu-item" data-page="cart">
+            <svg><use href="#i-cart"></use></svg>
+            <span>السلة</span>
+        </button>
+
+        <button class="menu-item" data-page="orders">
+            <svg><use href="#i-orders"></use></svg>
+            <span>طلباتي</span>
+        </button>
+
+        <div class="menu-title" style="margin-top:20px">الحساب</div>
+
+        <button class="menu-item" data-page="profile">
+            <svg><use href="#i-user"></use></svg>
+            <span>حسابي</span>
+        </button>
+
+        <button class="menu-item" data-page="login">
+            <svg><use href="#i-login"></use></svg>
+            <span>تسجيل الدخول</span>
+        </button>
+
+    </div>
+
+
+    <div class="sidebar-bottom">
+
+        <button class="collapse-btn" id="collapseSidebar">
+            <svg><use href="#i-chevron-right"></use></svg>
+        </button>
+
+    </div>
+
+</aside>
+
+
+<!-- =========================
+     Main
+========================= -->
+
+<main class="main">
+
+    <header class="topbar">
+
+        <div>
+            <div class="topbar-title" id="topbarTitle">
+                الرئيسية
+            </div>
+
+            <div class="topbar-sub">
+                ثانوية الشيخ عبدالعزيز بن باز · النظام الإلكتروني للمقصف
+            </div>
+        </div>
+
+
+        <div class="topbar-left">
+
+            <button class="icon-btn" id="topCartBtn">
+
+                <svg>
+                    <use href="#i-cart"></use>
+                </svg>
+
+                <span class="cart-count" id="cartCount">
+                    0
+                </span>
+
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- =========================
+         Home
+    ========================= -->
+
+    <section class="page active" id="page-home">
+
+        <div class="hero">
+
+            <div class="hero-content">
+
+                <div class="hero-label">
+                    <span></span>
+                    المقصف المدرسي الإلكتروني
+                </div>
+
+                <h1>
+                    مرحباً بك في مقصف
+                    ثانوية الشيخ عبدالعزيز بن باز
+                </h1>
+
+                <p>
+                    اطلب وجبتك ومشروبك بسهولة، وتابع حالة طلبك
+                    حتى يصبح جاهزاً للاستلام.
+                </p>
+
+                <div class="hero-actions">
+
+                    <button class="btn btn-primary" data-page="store">
+                        <svg><use href="#i-store"></use></svg>
+                        تصفح المقصف
+                    </button>
+
+                    <button class="btn btn-outline" data-page="orders">
+                        <svg><use href="#i-orders"></use></svg>
+                        متابعة الطلبات
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="hero-card">
+
+                <div class="hero-card-top">
+                    حالة النظام
+                </div>
+
+                <div class="hero-card-number">
+                    يعمل
+                </div>
+
+                <div class="hero-card-note">
+                    النظام الإلكتروني للمقصف متاح حالياً
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="section-head">
+
+            <div>
+                <h2>الأكثر طلباً</h2>
+                <p>منتجات مختارة من المقصف المدرسي</p>
+            </div>
+
+            <button class="link-btn" data-page="store">
+                عرض جميع المنتجات
+            </button>
+
+        </div>
+
+
+        <div class="products-grid" id="homeProducts"></div>
+
+    </section>
+
+
+    <!-- =========================
+         Store
+    ========================= -->
+
+    <section class="page" id="page-store">
+
+        <div class="section-head">
+
+            <div>
+                <h2>المقصف المدرسي</h2>
+                <p>
+                    اختر المنتجات وأضفها إلى سلة الطلب
+                </p>
+            </div>
+
+            <div class="search-box">
+
+                <svg>
+                    <use href="#i-search"></use>
+                </svg>
+
+                <input
+                    type="search"
+                    id="productSearch"
+                    placeholder="ابحث عن منتج..."
+                >
+
+            </div>
+
+        </div>
+
+
+        <div class="categories" id="categories"></div>
+
+        <div style="height:18px"></div>
+
+        <div class="products-grid" id="productsGrid"></div>
+
+    </section>
+
+
+    <!-- =========================
+         Cart
+    ========================= -->
+
+    <section class="page" id="page-cart">
+
+        <div class="section-head">
+
+            <div>
+                <h2>سلة الطلب</h2>
+                <p>راجع المنتجات قبل إرسال الطلب</p>
+            </div>
+
+        </div>
+
+        <div id="cartContainer"></div>
+
+    </section>
+
+
+    <!-- =========================
+         Orders
+    ========================= -->
+
+    <section class="page" id="page-orders">
+
+        <div class="section-head">
+
+            <div>
+                <h2>طلباتي</h2>
+                <p>تابع جميع طلباتك السابقة والحالية</p>
+            </div>
+
+        </div>
+
+        <div id="ordersContainer"></div>
+
+    </section>
+
+
+    <!-- =========================
+         Profile
+    ========================= -->
+
+    <section class="page" id="page-profile">
+
+        <div id="profileContainer"></div>
+
+    </section>
+
+
+    <!-- =========================
+         Login
+    ========================= -->
+
+    <section class="page" id="page-login">
+
+        <div class="auth-wrap">
+
+            <div class="auth-head">
+
+                <div class="auth-mark">
+                    <svg><use href="#i-school"></use></svg>
+                </div>
+
+                <h2>حساب الطالب</h2>
+
+                <p>
+                    سجّل الدخول للوصول إلى المقصف وطلباتك
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="auth-tabs">
+
+                    <button
+                        class="auth-tab active"
+                        id="loginTab"
+                    >
+                        تسجيل الدخول
+                    </button>
+
+                    <button
+                        class="auth-tab"
+                        id="registerTab"
+                    >
+                        حساب جديد
+                    </button>
+
+                </div>
+
+
+                <!-- Login -->
+
+                <form id="loginForm">
+
+                    <div class="form-group">
+
+                        <label>
+                            جوال الطالب
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="loginPhone"
+                            inputmode="numeric"
+                            autocomplete="tel"
+                            placeholder="05xxxxxxxx"
+                        >
+
+                        <div class="phone-hint">
+                            يمكنك كتابة الرقم بـ 05 أو 5 أو 966
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            كلمة المرور
+                        </label>
+
+                        <input
+                            type="password"
+                            id="loginPassword"
+                            autocomplete="current-password"
+                            placeholder="أدخل كلمة المرور"
+                        >
+
+                    </div>
+
+
+                    <button
+                        class="btn btn-green"
+                        style="width:100%"
+                        type="submit"
+                    >
+                        <svg><use href="#i-login"></use></svg>
+                        تسجيل الدخول
+                    </button>
+
+                </form>
+
+
+                <!-- Register -->
+
+                <form id="registerForm" style="display:none">
+
+                    <div class="form-grid">
+
+                        <div class="form-group full">
+
+                            <label>
+                                اسم الطالب
+                            </label>
+
+                            <input
+                                type="text"
+                                id="registerName"
+                                placeholder="الاسم الثلاثي"
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>
+                                جوال الطالب
+                            </label>
+
+                            <input
+                                type="tel"
+                                id="registerPhone"
+                                inputmode="numeric"
+                                autocomplete="tel"
+                                placeholder="05xxxxxxxx"
+                            >
+
+                            <div class="phone-hint">
+                                مثال: 0501234567 أو 501234567
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>
+                                جوال ولي الأمر
+                            </label>
+
+                            <input
+                                type="tel"
+                                id="registerParentPhone"
+                                inputmode="numeric"
+                                placeholder="05xxxxxxxx"
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>
+                                المرحلة
+                            </label>
+
+                            <select id="registerStage">
+
+                                <option value="">
+                                    اختر المرحلة
+                                </option>
+
+                                <option>
+                                    أول ثانوي
+                                </option>
+
+                                <option>
+                                    ثاني ثانوي
+                                </option>
+
+                                <option>
+                                    ثالث ثانوي
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>
+                                الفصل
+                            </label>
+
+                            <input
+                                type="text"
+                                id="registerClass"
+                                placeholder="مثال: 1/1"
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>
+                                كلمة المرور
+                            </label>
+
+                            <input
+                                type="password"
+                                id="registerPassword"
+                                placeholder="4 أحرف أو أرقام على الأقل"
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>
+                                تأكيد كلمة المرور
+                            </label>
+
+                            <input
+                                type="password"
+                                id="registerConfirm"
+                                placeholder="أعد كتابة كلمة المرور"
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <button
+                        class="btn btn-green"
+                        style="width:100%"
+                        type="submit"
+                    >
+                        <svg><use href="#i-check"></use></svg>
+                        إنشاء الحساب
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- =========================
+     Mobile Navigation
+========================= -->
+
+<nav class="mobile-nav">
+
+    <button
+        class="active"
+        data-page="home"
+    >
+        <svg><use href="#i-home"></use></svg>
+        <span>الرئيسية</span>
+    </button>
+
+
+    <button data-page="cart">
+
+        <svg><use href="#i-cart"></use></svg>
+
+        <span>السلة</span>
+
+    </button>
+
+
+    <button data-page="login">
+
+        <svg><use href="#i-login"></use></svg>
+
+        <span>تسجيل الدخول</span>
+
+    </button>
+
+</nav>
+
+
+<!-- =========================
+     Mada Modal
+========================= -->
+
+<div class="modal" id="madaModal">
+
+    <div class="modal-box">
+
+        <div class="modal-head">
+
+            <h3>
+                الدفع عبر مدى
+            </h3>
+
+            <button
+                class="close-modal"
+                id="closeMada"
+            >
+                <svg><use href="#i-close"></use></svg>
+            </button>
+
+        </div>
+
+
+        <div class="mada-box">
+
+            <div class="mada-logo">
+                mada
+            </div>
+
+            <div class="mada-note">
+
+                سيتم توجيه عملية الدفع إلى بوابة الدفع
+                المعتمدة عند ربط النظام بمزود الدفع.
+                <br><br>
+
+                هذه الواجهة حالياً للعرض والتجهيز فقط،
+                ولا تقوم بخصم أي مبلغ فعلي.
+
+            </div>
+
+        </div>
+
+
+        <div style="height:15px"></div>
+
+        <button
+            class="btn btn-green"
+            style="width:100%"
+            id="confirmMada"
+        >
+            متابعة
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     Toast
+========================= -->
+
+<div class="toast-container" id="toastContainer"></div>
+
+
+<script>
+
+/* =====================================================
+   رابط Google Apps Script
+===================================================== */
+
+const GOOGLE_SCRIPT_URL =
+"https://script.google.com/macros/s/AKfycbwe6WetVc4JEaodWZHoWwysA7_i6V6huXenYVPXgXKMKB4iZ-mfDgb6GqrxpOvOneHY/exec";
+
+
+/* =====================================================
+   إعدادات
+===================================================== */
+
+const VAT_RATE = 0.15;
+
+const STORAGE_STUDENT =
+"school_student";
+
+const STORAGE_CART =
+"school_canteen_cart";
+
+const STORAGE_ORDERS =
+"school_canteen_orders";
+
+
+/* =====================================================
+   بيانات المنتجات الاحتياطية
+===================================================== */
+
+const DEFAULT_PRODUCTS = [
+
+    {
+        id:"1",
+        name:"ساندويتش دجاج",
+        category:"وجبات",
+        price:5,
+        quantity:100,
+        status:"متوفر"
+    },
+
+    {
+        id:"2",
+        name:"ساندويتش جبن",
+        category:"وجبات",
+        price:4,
+        quantity:100,
+        status:"متوفر"
+    },
+
+    {
+        id:"3",
+        name:"فطيرة جبن",
+        category:"مخبوزات",
+        price:3.5,
+        quantity:80,
+        status:"متوفر"
+    },
+
+    {
+        id:"4",
+        name:"عصير برتقال",
+        category:"مشروبات",
+        price:3,
+        quantity:100,
+        status:"متوفر"
+    },
+
+    {
+        id:"5",
+        name:"مياه",
+        category:"مشروبات",
+        price:1,
+        quantity:200,
+        status:"متوفر"
+    },
+
+    {
+        id:"6",
+        name:"حليب",
+        category:"مشروبات",
+        price:2.5,
+        quantity:100,
+        status:"متوفر"
+    },
+
+    {
+        id:"7",
+        name:"كرواسون",
+        category:"مخبوزات",
+        price:3,
+        quantity:80,
+        status:"متوفر"
+    },
+
+    {
+        id:"8",
+        name:"بسكويت",
+        category:"وجبات خفيفة",
+        price:2,
+        quantity:100,
+        status:"متوفر"
+    },
+
+    {
+        id:"9",
+        name:"تفاحة",
+        category:"فواكه",
+        price:2,
+        quantity:50,
+        status:"متوفر"
+    },
+
+    {
+        id:"10",
+        name:"سلطة فواكه",
+        category:"فواكه",
+        price:5,
+        quantity:50,
+        status:"متوفر"
+    },
+
+    {
+        id:"11",
+        name:"وجبة المدرسة",
+        category:"وجبات",
+        price:8,
+        quantity:100,
+        status:"متوفر"
+    },
+
+    {
+        id:"12",
+        name:"مقرمشات",
+        category:"وجبات خفيفة",
+        price:2,
+        quantity:100,
+        status:"متوفر"
+    }
+
+];
+
+
+/* =====================================================
+   الحالة
+===================================================== */
+
+let products = [];
+
+let cart = [];
+
+let currentStudent = null;
+
+let selectedCategory = "الكل";
+
+let paymentMethod = "رصيد الطالب";
+
+
+/* =====================================================
+   عناصر DOM
+===================================================== */
+
+const loadingScreen =
+document.getElementById("loadingScreen");
+
+const sidebar =
+document.getElementById("sidebar");
+
+const cartCount =
+document.getElementById("cartCount");
+
+const productsGrid =
+document.getElementById("productsGrid");
+
+const homeProducts =
+document.getElementById("homeProducts");
+
+const categories =
+document.getElementById("categories");
+
+const cartContainer =
+document.getElementById("cartContainer");
+
+const ordersContainer =
+document.getElementById("ordersContainer");
+
+const profileContainer =
+document.getElementById("profileContainer");
+
+const toastContainer =
+document.getElementById("toastContainer");
+
+
+/* =====================================================
+   تشغيل الموقع
+===================================================== */
+
+document.addEventListener(
+"DOMContentLoaded",
+async function(){
+
+    loadStudent();
+
+    loadCart();
+
+    bindNavigation();
+
+    bindForms();
+
+    bindSidebar();
+
+    bindCartEvents();
+
+    bindProductEvents();
+
+    await loadProducts();
+
+    renderCategories();
+
+    renderProducts();
+
+    renderHomeProducts();
+
+    renderCart();
+
+    renderProfile();
+
+    updateLoginButton();
+
+    setTimeout(function(){
+
+        loadingScreen.style.opacity="0";
+
+        setTimeout(function(){
+
+            loadingScreen.style.display="none";
+
+        },350);
+
+    },500);
+
+});
+
+
+/* =====================================================
+   API
+===================================================== */
+
+async function apiRequest(data){
+
+    try{
+
+        const response =
+        await fetch(
+            GOOGLE_SCRIPT_URL,
+            {
+                method:"POST",
+                headers:{
+                    "Content-Type":
+                    "text/plain;charset=utf-8"
+                },
+                body:JSON.stringify(data)
+            }
+        );
+
+
+        if(!response.ok){
+
+            throw new Error(
+                "تعذر الاتصال بالخادم"
+            );
+
+        }
+
+
+        const result =
+        await response.json();
+
+
+        return result;
+
+    }catch(error){
+
+        console.error(error);
+
+        return {
+            success:false,
+            message:
+            error.message ||
+            "تعذر الاتصال بالخادم"
+        };
+
+    }
+
+}
+
+
+/* =====================================================
+   المنتجات
+===================================================== */
+
+async function loadProducts(){
+
+    products =
+    [...DEFAULT_PRODUCTS];
+
+
+    const result =
+    await apiRequest({
+        action:"products"
+    });
+
+
+    if(
+        result &&
+        result.success &&
+        Array.isArray(result.products) &&
+        result.products.length
+    ){
+
+        products =
+        result.products.map(function(item){
+
+            return {
+
+                id:String(item.id),
+
+                name:String(item.name),
+
+                category:String(
+                    item.category ||
+                    "أخرى"
+                ),
+
+                price:
+                Number(item.price)||0,
+
+                quantity:
+                Number(item.quantity)||0,
+
+                status:
+                String(
+                    item.status ||
+                    "متوفر"
+                )
+
+            };
+
+        });
+
+    }
+
+}
+
+
+/* =====================================================
+   SVG المنتج
+===================================================== */
+
+function productIcon(category){
+
+    if(category==="مشروبات"){
+
+        return `
+        <svg viewBox="0 0 24 24">
+            <path d="M7 3h10l-1 18H8L7 3Z"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.7"/>
+            <path d="M9 7h6"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.7"/>
+        </svg>`;
+
+    }
+
+
+    if(category==="فواكه"){
+
+        return `
+        <svg viewBox="0 0 24 24">
+            <path d="M12 8c-5 0-7 3-7 6.5S8 21 12 21s7-3 7-6.5S17 8 12 8Z"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.7"/>
+            <path d="M12 8c0-3 2-5 5-5"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.7"
+            stroke-linecap="round"/>
+        </svg>`;
+
+    }
+
+
+    if(category==="مخبوزات"){
+
+        return `
+        <svg viewBox="0 0 24 24">
+            <path d="M5 11c0-4 3-7 7-7s7 3 7 7v7H5v-7Z"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.7"/>
+            <path d="M8 11h8M9 15h6"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.7"
+            stroke-linecap="round"/>
+        </svg>`;
+
+    }
+
+
+    return `
+    <svg viewBox="0 0 24 24">
+        <rect x="4" y="6" width="16" height="13" rx="2"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.7"/>
+        <path d="M8 6V4h8v2M8 11h8M8 15h5"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.7"
+        stroke-linecap="round"/>
+    </svg>`;
+
+}
+
+
+/* =====================================================
+   تصنيفات
+===================================================== */
+
+function renderCategories(){
+
+    const cats =
+    [
+        "الكل",
+        ...new Set(
+            products.map(
+                p=>p.category
+            )
+        )
+    ];
+
+
+    categories.innerHTML =
+    cats.map(function(cat){
+
+        return `
+        <button
+            class="category ${
+                cat===selectedCategory
+                ?"active":""
+            }"
+            data-category="${escapeHtml(cat)}"
+        >
+            ${escapeHtml(cat)}
+        </button>
+        `;
+
+    }).join("");
+
+}
+
+
+categories.addEventListener(
+"click",
+function(e){
+
+    const btn =
+    e.target.closest(
+        "[data-category]"
+    );
+
+    if(!btn) return;
+
+    selectedCategory =
+    btn.dataset.category;
+
+    renderCategories();
+
+    renderProducts();
+
+});
+
+
+/* =====================================================
+   فلترة المنتجات
+===================================================== */
+
+function getFilteredProducts(){
+
+    const search =
+    (
+        document.getElementById(
+            "productSearch"
+        )?.value || ""
+    ).trim().toLowerCase();
+
+
+    return products.filter(function(product){
+
+        const categoryMatch =
+        selectedCategory==="الكل" ||
+        product.category===
+        selectedCategory;
+
+
+        const searchMatch =
+        !search ||
+        product.name
+            .toLowerCase()
+            .includes(search) ||
+        product.category
+            .toLowerCase()
+            .includes(search);
+
+
+        return categoryMatch &&
+        searchMatch;
+
+    });
+
+}
+
+
+/* =====================================================
+   رسم المنتجات
+===================================================== */
+
+function renderProducts(){
+
+    const list =
+    getFilteredProducts();
+
+
+    if(!list.length){
+
+        productsGrid.innerHTML = `
+        <div class="empty"
+             style="grid-column:1/-1">
+            <div class="empty-icon">
+                <svg>
+                    <use href="#i-search"></use>
+                </svg>
+            </div>
+            <h3>لا توجد منتجات</h3>
+            <p>لم نجد منتجاً مطابقاً للبحث</p>
+        </div>`;
+
+        return;
+
+    }
+
+
+    productsGrid.innerHTML =
+    list.map(
+        productCard
+    ).join("");
+
+}
+
+
+/* =====================================================
+   المنتجات الرئيسية
+===================================================== */
+
+function renderHomeProducts(){
+
+    const list =
+    products.slice(0,4);
+
+
+    homeProducts.innerHTML =
+    list.map(
+        productCard
+    ).join("");
+
+}
+
+
+/* =====================================================
+   بطاقة المنتج
+===================================================== */
+
+function productCard(product){
+
+    const unavailable =
+    product.status &&
+    product.status !== "متوفر";
+
+
+    return `
+
+    <article class="product-card">
+
+        <div class="product-image">
+            ${productIcon(
+                product.category
+            )}
+        </div>
+
+        <div class="product-category">
+            ${escapeHtml(
+                product.category
+            )}
+        </div>
+
+        <div class="product-name">
+            ${escapeHtml(
+                product.name
+            )}
+        </div>
+
+        <div class="product-bottom">
+
+            <div class="price">
+                ${formatPrice(product.price)}
+                <small>ريال</small>
+            </div>
+
+            ${
+                unavailable
+                ?
+                `
+                <button
+                    class="add-btn"
+                    disabled
+                    style="
+                        opacity:.45;
+                        cursor:not-allowed
+                    "
+                >
+                    —
+                </button>
+                `
+                :
+                `
+                <button
+                    class="add-btn"
+                    data-product-id="${escapeHtml(
+                        String(product.id)
+                    )}"
+                    title="إضافة للسلة"
+                >
+                    <svg>
+                        <use href="#i-plus"></use>
+                    </svg>
+                </button>
+                `
+            }
+
+        </div>
+
+    </article>
+
+    `;
+
+}
+
+
+/* =====================================================
+   البحث
+===================================================== */
+
+document
+.getElementById("productSearch")
+.addEventListener(
+"input",
+function(){
+
+    renderProducts();
+
+});
+
+
+/* =====================================================
+   إضافة للسلة
+===================================================== */
+
+function addToCart(productId){
+
+    const id =
+    String(productId);
+
+
+    const product =
+    products.find(
+        p =>
+        String(p.id)===id
+    );
+
+
+    if(!product){
+
+        showToast(
+            "المنتج غير موجود",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    if(
+        product.status &&
+        product.status !== "متوفر"
+    ){
+
+        showToast(
+            "هذا المنتج غير متوفر حالياً",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    const existing =
+    cart.find(
+        item =>
+        String(item.id)===id
+    );
+
+
+    if(existing){
+
+        existing.quantity += 1;
+
+    }else{
+
+        cart.push({
+
+            id:String(product.id),
+
+            name:product.name,
+
+            category:product.category,
+
+            price:Number(product.price)||0,
+
+            quantity:1
+
+        });
+
+    }
+
+
+    saveCart();
+
+    renderCart();
+
+    updateCartCount();
+
+    showToast(
+        "تمت إضافة المنتج إلى السلة",
+        "success"
+    );
+
+}
+
+
+/* =====================================================
+   تغيير الكمية
+===================================================== */
+
+function changeQuantity(
+    productId,
+    amount
+){
+
+    const id =
+    String(productId);
+
+
+    const item =
+    cart.find(
+        x =>
+        String(x.id)===id
+    );
+
+
+    if(!item) return;
+
+
+    item.quantity += amount;
+
+
+    if(item.quantity<=0){
+
+        cart =
+        cart.filter(
+            x =>
+            String(x.id)!==id
+        );
+
+    }
+
+
+    saveCart();
+
+    renderCart();
+
+    updateCartCount();
+
+}
+
+
+/* =====================================================
+   حذف المنتج
+===================================================== */
+
+function removeFromCart(productId){
+
+    const id =
+    String(productId);
+
+
+    cart =
+    cart.filter(
+        item =>
+        String(item.id)!==id
+    );
+
+
+    saveCart();
+
+    renderCart();
+
+    updateCartCount();
+
+}
+
+
+/* =====================================================
+   أحداث المنتجات
+===================================================== */
+
+function bindProductEvents(){
+
+    document.addEventListener(
+        "click",
+        function(e){
+
+            const btn =
+            e.target.closest(
+                "[data-product-id]"
+            );
+
+            if(!btn) return;
+
+            addToCart(
+                btn.dataset.productId
+            );
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   Cart Events
+===================================================== */
+
+function bindCartEvents(){
+
+    cartContainer.addEventListener(
+        "click",
+        function(e){
+
+            const quantityBtn =
+            e.target.closest(
+                "[data-cart-action]"
+            );
+
+
+            if(!quantityBtn) return;
+
+
+            const action =
+            quantityBtn.dataset.cartAction;
+
+            const id =
+            quantityBtn.dataset.id;
+
+
+            if(action==="plus"){
+
+                changeQuantity(id,1);
+
+            }
+
+            if(action==="minus"){
+
+                changeQuantity(id,-1);
+
+            }
+
+            if(action==="remove"){
+
+                removeFromCart(id);
+
+            }
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   تحميل السلة
+===================================================== */
+
+function loadCart(){
+
+    try{
+
+        const saved =
+        localStorage.getItem(
+            STORAGE_CART
+        );
+
+
+        cart =
+        saved
+        ?
+        JSON.parse(saved)
+        :
+        [];
+
+
+        if(!Array.isArray(cart)){
+
+            cart=[];
+
+        }
+
+    }catch{
+
+        cart=[];
+
+    }
+
+}
+
+
+/* =====================================================
+   حفظ السلة
+===================================================== */
+
+function saveCart(){
+
+    localStorage.setItem(
+        STORAGE_CART,
+        JSON.stringify(cart)
+    );
+
+}
+
+
+/* =====================================================
+   مزامنة السلة
+===================================================== */
+
+function reconcileCart(){
+
+    cart =
+    cart
+    .map(function(item){
+
+        const product =
+        products.find(
+            p =>
+            String(p.id)===
+            String(item.id)
+        );
+
+
+        if(!product){
+
+            return null;
+
+        }
+
+
+        return {
+
+            id:String(product.id),
+
+            name:product.name,
+
+            category:product.category,
+
+            price:
+            Number(product.price)||0,
+
+            quantity:
+            Math.max(
+                1,
+                Number(item.quantity)||1
+            )
+
+        };
+
+    })
+    .filter(Boolean);
+
+
+    saveCart();
+
+}
+
+
+/* =====================================================
+   إجمالي السلة
+===================================================== */
+
+function cartTotals(){
+
+    const subtotal =
+    cart.reduce(
+        function(total,item){
+
+            return total +
+            (
+                Number(item.price)||0
+            ) *
+            (
+                Number(item.quantity)||0
+            );
+
+        },
+        0
+    );
+
+
+    const tax =
+    Number(
+        (
+            subtotal *
+            VAT_RATE
+        ).toFixed(2)
+    );
+
+
+    const total =
+    Number(
+        (
+            subtotal +
+            tax
+        ).toFixed(2)
+    );
+
+
+    return {
+        subtotal,
+        tax,
+        total
+    };
+
+}
+
+
+/* =====================================================
+   رسم السلة
+===================================================== */
+
+function renderCart(){
+
+    reconcileCart();
+
+    updateCartCount();
+
+
+    if(!cart.length){
+
+        cartContainer.innerHTML = `
+        <div class="empty">
+
+            <div class="empty-icon">
+                <svg>
+                    <use href="#i-cart"></use>
+                </svg>
+            </div>
+
+            <h3>
+                السلة فارغة
+            </h3>
+
+            <p>
+                أضف المنتجات التي ترغب بطلبها من المقصف
+            </p>
+
+            <div style="height:14px"></div>
+
+            <button
+                class="btn btn-green"
+                data-page="store"
+            >
+                تصفح المقصف
+            </button>
+
+        </div>`;
+
+        return;
+
+    }
+
+
+    const totals =
+    cartTotals();
+
+
+    const itemsHtml =
+    cart.map(function(item){
+
+        return `
+
+        <div class="cart-item">
+
+            <div class="cart-item-icon">
+
+                ${productIcon(
+                    item.category
+                )}
+
+            </div>
+
+
+            <div class="cart-item-info">
+
+                <strong>
+                    ${escapeHtml(
+                        item.name
+                    )}
+                </strong>
+
+                <small>
+                    ${formatPrice(item.price)}
+                    ريال للقطعة
+                </small>
+
+            </div>
+
+
+            <div class="quantity">
+
+                <button
+                    data-cart-action="plus"
+                    data-id="${escapeHtml(
+                        String(item.id)
+                    )}"
+                >
+                    +
+                </button>
+
+                <span>
+                    ${item.quantity}
+                </span>
+
+                <button
+                    data-cart-action="minus"
+                    data-id="${escapeHtml(
+                        String(item.id)
+                    )}"
+                >
+                    −
+                </button>
+
+            </div>
+
+
+            <strong>
+                ${formatPrice(
+                    item.price *
+                    item.quantity
+                )}
+                ريال
+            </strong>
+
+
+            <button
+                class="remove-item"
+                data-cart-action="remove"
+                data-id="${escapeHtml(
+                    String(item.id)
+                )}"
+                title="حذف"
+            >
+                <svg>
+                    <use href="#i-trash"></use>
+                </svg>
+            </button>
+
+        </div>
+
+        `;
+
+    }).join("");
+
+
+    cartContainer.innerHTML = `
+
+    <div class="cart-layout">
+
+        <div class="cart-list">
+
+            ${itemsHtml}
+
+        </div>
+
+
+        <div class="card summary">
+
+            <h3>
+                ملخص الطلب
+            </h3>
+
+            <div class="summary-row">
+                <span>المجموع</span>
+                <strong>
+                    ${formatPrice(
+                        totals.subtotal
+                    )} ريال
+                </strong>
+            </div>
+
+            <div class="summary-row">
+                <span>الضريبة 15%</span>
+                <strong>
+                    ${formatPrice(
+                        totals.tax
+                    )} ريال
+                </strong>
+            </div>
+
+            <div class="summary-row total">
+                <span>الإجمالي</span>
+                <strong>
+                    ${formatPrice(
+                        totals.total
+                    )} ريال
+                </strong>
+            </div>
+
+
+            <div class="payment-title">
+                طريقة الدفع
+            </div>
+
+
+            <div class="payment-options">
+
+                <div
+                    class="payment-option ${
+                        paymentMethod===
+                        "رصيد الطالب"
+                        ?"active":""
+                    }"
+                    data-payment="رصيد الطالب"
+                >
+
+                    <div class="payment-radio"></div>
+
+                    <div class="payment-info">
+
+                        <strong>
+                            رصيد الطالب
+                        </strong>
+
+                        <span>
+                            الدفع من الرصيد المدرسي
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="payment-option ${
+                        paymentMethod===
+                        "مدى"
+                        ?"active":""
+                    }"
+                    data-payment="مدى"
+                >
+
+                    <div class="payment-radio"></div>
+
+                    <div class="payment-info">
+
+                        <strong>
+                            مدى
+                        </strong>
+
+                        <span>
+                            الدفع بالبطاقة البنكية
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div style="height:15px"></div>
+
+
+            <button
+                class="btn btn-green"
+                id="submitOrderBtn"
+                style="width:100%"
+            >
+                <svg>
+                    <use href="#i-check"></use>
+                </svg>
+                تأكيد الطلب
+            </button>
+
+        </div>
+
+    </div>
+
+    `;
+
+
+    document
+    .querySelectorAll(
+        "[data-payment]"
+    )
+    .forEach(function(option){
+
+        option.addEventListener(
+            "click",
+            function(){
+
+                paymentMethod =
+                option.dataset.payment;
+
+                renderCart();
+
+            }
+        );
+
+    });
+
+
+    const submitBtn =
+    document.getElementById(
+        "submitOrderBtn"
+    );
+
+
+    if(submitBtn){
+
+        submitBtn.addEventListener(
+            "click",
+            submitOrder
+        );
+
+    }
+
+
+    document
+    .querySelectorAll(
+        '[data-page="store"]'
+    )
+    .forEach(function(btn){
+
+        btn.addEventListener(
+            "click",
+            function(){
+
+                navigate("store");
+
+            }
+        );
+
+    });
+
+}
+
+
+/* =====================================================
+   عدد السلة
+===================================================== */
+
+function updateCartCount(){
+
+    const count =
+    cart.reduce(
+        (
+            total,
+            item
+        ) =>
+        total +
+        (
+            Number(item.quantity)||0
+        ),
+        0
+    );
+
+
+    cartCount.textContent =
+    count;
+
+}
+
+
+/* =====================================================
+   إنشاء الطلب
+===================================================== */
+
+async function submitOrder(){
+
+    if(!currentStudent){
+
+        showToast(
+            "يجب تسجيل الدخول أولاً",
+            "error"
+        );
+
+        navigate("login");
+
+        return;
+
+    }
+
+
+    if(!cart.length){
+
+        showToast(
+            "السلة فارغة",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    if(paymentMethod==="مدى"){
+
+        document
+        .getElementById(
+            "madaModal"
+        )
+        .classList.add("show");
+
+        return;
+
+    }
+
+
+    await createOrder();
+
+
+}
+
+
+/* =====================================================
+   تأكيد مدى
+===================================================== */
+
+document
+.getElementById("confirmMada")
+.addEventListener(
+"click",
+async function(){
+
+    document
+    .getElementById(
+        "madaModal"
+    )
+    .classList.remove("show");
+
+    await createOrder();
+
+});
+
+
+document
+.getElementById("closeMada")
+.addEventListener(
+"click",
+function(){
+
+    document
+    .getElementById(
+        "madaModal"
+    )
+    .classList.remove("show");
+
+});
+
+
+/* =====================================================
+   إنشاء الطلب فعلياً
+===================================================== */
+
+async function createOrder(){
+
+    const btn =
+    document.getElementById(
+        "submitOrderBtn"
+    );
+
+
+    if(btn){
+
+        btn.disabled=true;
+
+        btn.innerHTML=
+        "جاري إرسال الطلب...";
+
+    }
+
+
+    const totals =
+    cartTotals();
+
+
+    const result =
+    await apiRequest({
+
+        action:"createOrder",
+
+        studentId:
+        currentStudent.studentId ||
+        currentStudent.id,
+
+        studentName:
+        currentStudent.name,
+
+        items:
+        cart.map(function(item){
+
+            return {
+
+                id:item.id,
+
+                name:item.name,
+
+                price:item.price,
+
+                quantity:item.quantity
+
+            };
+
+        }),
+
+        paymentMethod:
+        paymentMethod
+
+    });
+
+
+    if(result.success){
+
+        const order =
+        result.order;
+
+
+        saveLocalOrder(order);
+
+
+        cart=[];
+
+        saveCart();
+
+        updateCartCount();
+
+
+        showToast(
+            "تم إرسال الطلب بنجاح",
+            "success"
+        );
+
+
+        navigate("orders");
+
+        loadOrders();
+
+    }else{
+
+        showToast(
+            result.message ||
+            "تعذر إرسال الطلب",
+            "error"
+        );
+
+    }
+
+
+    renderCart();
+
+}
+
+
+/* =====================================================
+   تخزين الطلب محلياً
+===================================================== */
+
+function saveLocalOrder(order){
+
+    try{
+
+        const saved =
+        JSON.parse(
+            localStorage.getItem(
+                STORAGE_ORDERS
+            ) || "[]"
+        );
+
+
+        saved.unshift(order);
+
+
+        localStorage.setItem(
+            STORAGE_ORDERS,
+            JSON.stringify(
+                saved.slice(0,30)
+            )
+        );
+
+    }catch{}
+
+}
+
+
+/* =====================================================
+   تحميل الطالب
+===================================================== */
+
+function loadStudent(){
+
+    try{
+
+        const saved =
+        localStorage.getItem(
+            STORAGE_STUDENT
+        );
+
+
+        currentStudent =
+        saved
+        ?
+        JSON.parse(saved)
+        :
+        null;
+
+    }catch{
+
+        currentStudent=null;
+
+    }
+
+}
+
+
+/* =====================================================
+   حفظ الطالب
+===================================================== */
+
+function saveStudent(student){
+
+    currentStudent =
+    student;
+
+
+    localStorage.setItem(
+        STORAGE_STUDENT,
+        JSON.stringify(student)
+    );
+
+}
+
+
+/* =====================================================
+   التسجيل وتسجيل الدخول
+===================================================== */
+
+function bindForms(){
+
+    document
+    .getElementById("loginForm")
+    .addEventListener(
+        "submit",
+        login
+    );
+
+
+    document
+    .getElementById("registerForm")
+    .addEventListener(
+        "submit",
+        register
+    );
+
+
+    document
+    .getElementById("loginTab")
+    .addEventListener(
+        "click",
+        function(){
+
+            showAuth("login");
+
+        }
+    );
+
+
+    document
+    .getElementById("registerTab")
+    .addEventListener(
+        "click",
+        function(){
+
+            showAuth("register");
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   تبديل تسجيل / إنشاء
+===================================================== */
+
+function showAuth(type){
+
+    const login =
+    type==="login";
+
+
+    document
+    .getElementById(
+        "loginForm"
+    )
+    .style.display =
+    login
+    ? "block"
+    : "none";
+
+
+    document
+    .getElementById(
+        "registerForm"
+    )
+    .style.display =
+    login
+    ? "none"
+    : "block";
+
+
+    document
+    .getElementById(
+        "loginTab"
+    )
+    .classList.toggle(
+        "active",
+        login
+    );
+
+
+    document
+    .getElementById(
+        "registerTab"
+    )
+    .classList.toggle(
+        "active",
+        !login
+    );
+
+}
+
+
+/* =====================================================
+   تطبيع رقم الجوال في الواجهة
+===================================================== */
+
+function normalizePhone(phone){
+
+    let value =
+    String(phone || "")
+    .trim()
+    .replace(/\s+/g,"")
+    .replace(/-/g,"")
+    .replace(/\(/g,"")
+    .replace(/\)/g,"");
+
+
+    if(value.startsWith("+")){
+
+        value =
+        value.substring(1);
+
+    }
+
+
+    if(value.startsWith("966")){
+
+        value =
+        value.substring(3);
+
+    }
+
+
+    if(/^5\d{8}$/.test(value)){
+
+        value =
+        "0" + value;
+
+    }
+
+
+    if(/^05\d{8}$/.test(value)){
+
+        return value;
+
+    }
+
+
+    return "";
+
+}
+
+
+/* =====================================================
+   التسجيل
+===================================================== */
+
+async function register(e){
+
+    e.preventDefault();
+
+
+    const name =
+    document
+    .getElementById(
+        "registerName"
+    )
+    .value
+    .trim();
+
+
+    const phone =
+    normalizePhone(
+        document
+        .getElementById(
+            "registerPhone"
+        )
+        .value
+    );
+
+
+    const parentPhone =
+    normalizePhone(
+        document
+        .getElementById(
+            "registerParentPhone"
+        )
+        .value
+    );
+
+
+    const stage =
+    document
+    .getElementById(
+        "registerStage"
+    )
+    .value;
+
+
+    const className =
+    document
+    .getElementById(
+        "registerClass"
+    )
+    .value
+    .trim();
+
+
+    const password =
+    document
+    .getElementById(
+        "registerPassword"
+    )
+    .value;
+
+
+    const confirmPassword =
+    document
+    .getElementById(
+        "registerConfirm"
+    )
+    .value;
+
+
+    if(!name){
+
+        showToast(
+            "أدخل اسم الطالب",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    if(!phone){
+
+        showToast(
+            "رقم جوال الطالب غير صحيح",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    if(!parentPhone){
+
+        showToast(
+            "رقم جوال ولي الأمر غير صحيح",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    if(!stage){
+
+        showToast(
+            "اختر المرحلة",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    if(!className){
+
+        showToast(
+            "أدخل الفصل",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    if(password.length<4){
+
+        showToast(
+            "كلمة المرور قصيرة جداً",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    if(password!==confirmPassword){
+
+        showToast(
+            "كلمتا المرور غير متطابقتين",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    const result =
+    await apiRequest({
+
+        action:"register",
+
+        name:name,
+
+        phone:phone,
+
+        parentPhone:parentPhone,
+
+        stage:stage,
+
+        className:className,
+
+        password:password,
+
+        confirmPassword:
+        confirmPassword
+
+    });
+
+
+    if(result.success){
+
+        saveStudent(
+            result.student
+        );
+
+
+        showToast(
+            "تم إنشاء الحساب بنجاح",
+            "success"
+        );
+
+
+        updateLoginButton();
+
+        renderProfile();
+
+        navigate("home");
+
+    }else{
+
+        showToast(
+            result.message ||
+            "تعذر إنشاء الحساب",
+            "error"
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   تسجيل الدخول
+===================================================== */
+
+async function login(e){
+
+    e.preventDefault();
+
+
+    const phone =
+    normalizePhone(
+        document
+        .getElementById(
+            "loginPhone"
+        )
+        .value
+    );
+
+
+    const password =
+    document
+    .getElementById(
+        "loginPassword"
+    )
+    .value;
+
+
+    if(!phone){
+
+        showToast(
+            "رقم الجوال غير صحيح",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    if(!password){
+
+        showToast(
+            "أدخل كلمة المرور",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    const result =
+    await apiRequest({
+
+        action:"login",
+
+        phone:phone,
+
+        password:password
+
+    });
+
+
+    if(result.success){
+
+        saveStudent(
+            result.student
+        );
+
+
+        showToast(
+            "تم تسجيل الدخول بنجاح",
+            "success"
+        );
+
+
+        updateLoginButton();
+
+        renderProfile();
+
+        navigate("home");
+
+    }else{
+
+        showToast(
+            result.message ||
+            "تعذر تسجيل الدخول",
+            "error"
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   تسجيل الخروج
+===================================================== */
+
+function logout(){
+
+    localStorage.removeItem(
+        STORAGE_STUDENT
+    );
+
+
+    currentStudent=null;
+
+
+    updateLoginButton();
+
+    renderProfile();
+
+    showToast(
+        "تم تسجيل الخروج",
+        "success"
+    );
+
+
+    navigate("login");
+
+}
+
+
+/* =====================================================
+   الملف الشخصي
+===================================================== */
+
+function renderProfile(){
+
+    if(!currentStudent){
+
+        profileContainer.innerHTML = `
+
+        <div class="empty">
+
+            <div class="empty-icon">
+                <svg>
+                    <use href="#i-user"></use>
+                </svg>
+            </div>
+
+            <h3>
+                لم تسجل الدخول
+            </h3>
+
+            <p>
+                سجل دخولك للوصول إلى بيانات حسابك
+            </p>
+
+            <div style="height:14px"></div>
+
+            <button
+                class="btn btn-green"
+                data-page="login"
+            >
+                تسجيل الدخول
+            </button>
+
+        </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    const firstLetter =
+    currentStudent.name
+    ? currentStudent.name.charAt(0)
+    : "ط";
+
+
+    profileContainer.innerHTML = `
+
+    <div class="card">
+
+        <div class="profile-head">
+
+            <div class="avatar">
+                ${escapeHtml(
+                    firstLetter
+                )}
+            </div>
+
+            <div>
+
+                <h2>
+                    ${escapeHtml(
+                        currentStudent.name
+                    )}
+                </h2>
+
+                <p>
+                    رقم الطالب:
+                    ${escapeHtml(
+                        String(
+                            currentStudent.studentId ||
+                            currentStudent.id ||
+                            ""
+                        )
+                    )}
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="profile-grid">
+
+            <div class="info-box">
+
+                <span>جوال الطالب</span>
+
+                <strong>
+                    ${escapeHtml(
+                        currentStudent.phone ||
+                        ""
+                    )}
+                </strong>
+
+            </div>
+
+
+            <div class="info-box">
+
+                <span>جوال ولي الأمر</span>
+
+                <strong>
+                    ${escapeHtml(
+                        currentStudent.parentPhone ||
+                        ""
+                    )}
+                </strong>
+
+            </div>
+
+
+            <div class="info-box">
+
+                <span>المرحلة</span>
+
+                <strong>
+                    ${escapeHtml(
+                        currentStudent.stage ||
+                        ""
+                    )}
+                </strong>
+
+            </div>
+
+
+            <div class="info-box">
+
+                <span>الفصل</span>
+
+                <strong>
+                    ${escapeHtml(
+                        currentStudent.className ||
+                        ""
+                    )}
+                </strong>
+
+            </div>
+
+
+            <div class="info-box">
+
+                <span>حالة الحساب</span>
+
+                <strong>
+                    ${escapeHtml(
+                        currentStudent.status ||
+                        "نشط"
+                    )}
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <div style="height:18px"></div>
+
+
+        <button
+            class="btn btn-danger"
+            id="logoutBtn"
+        >
+            تسجيل الخروج
+        </button>
+
+    </div>
+
+    `;
+
+
+    document
+    .getElementById(
+        "logoutBtn"
+    )
+    ?.addEventListener(
+        "click",
+        logout
+    );
+
+
+    document
+    .querySelectorAll(
+        '[data-page="login"]'
+    )
+    .forEach(function(btn){
+
+        btn.addEventListener(
+            "click",
+            function(){
+
+                navigate("login");
+
+            }
+        );
+
+    });
+
+}
+
+
+/* =====================================================
+   تحديث زر تسجيل الدخول
+===================================================== */
+
+function updateLoginButton(){
+
+    const buttons =
+    document.querySelectorAll(
+        '[data-page="login"]'
+    );
+
+
+    buttons.forEach(function(btn){
+
+        const span =
+        btn.querySelector("span");
+
+
+        if(
+            currentStudent &&
+            span
+        ){
+
+            span.textContent =
+            "حسابي";
+
+        }
+
+    });
+
+}
+
+
+/* =====================================================
+   الطلبات
+===================================================== */
+
+async function loadOrders(){
+
+    if(!currentStudent){
+
+        renderOrders([]);
+
+        return;
+
+    }
+
+
+    const studentId =
+    currentStudent.studentId ||
+    currentStudent.id;
+
+
+    const result =
+    await apiRequest({
+
+        action:"orders",
+
+        studentId:String(
+            studentId
+        )
+
+    });
+
+
+    if(result.success){
+
+        renderOrders(
+            result.orders || []
+        );
+
+    }else{
+
+        renderOrders([]);
+
+        showToast(
+            result.message ||
+            "تعذر تحميل الطلبات",
+            "error"
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   رسم الطلبات
+===================================================== */
+
+function renderOrders(orders){
+
+    if(!currentStudent){
+
+        ordersContainer.innerHTML = `
+
+        <div class="empty">
+
+            <div class="empty-icon">
+                <svg>
+                    <use href="#i-orders"></use>
+                </svg>
+            </div>
+
+            <h3>
+                سجل الدخول أولاً
+            </h3>
+
+            <p>
+                لتتمكن من متابعة طلباتك
+            </p>
+
+            <div style="height:14px"></div>
+
+            <button
+                class="btn btn-green"
+                data-page="login"
+            >
+                تسجيل الدخول
+            </button>
+
+        </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    if(!orders.length){
+
+        ordersContainer.innerHTML = `
+
+        <div class="empty">
+
+            <div class="empty-icon">
+                <svg>
+                    <use href="#i-package"></use>
+                </svg>
+            </div>
+
+            <h3>
+                لا توجد طلبات
+            </h3>
+
+            <p>
+                لم تقم بإنشاء أي طلب حتى الآن
+            </p>
+
+            <div style="height:14px"></div>
+
+            <button
+                class="btn btn-green"
+                data-page="store"
+            >
+                ابدأ طلبك
+            </button>
+
+        </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    ordersContainer.innerHTML =
+    `<div class="orders-list">
+        ${
+            orders.map(
+                orderCard
+            ).join("")
+        }
+    </div>`;
+
+
+    document
+    .querySelectorAll(
+        '[data-page="store"]'
+    )
+    .forEach(function(btn){
+
+        btn.addEventListener(
+            "click",
+            function(){
+
+                navigate("store");
+
+            }
+        );
+
+    });
+
+}
+
+
+/* =====================================================
+   بطاقة الطلب
+===================================================== */
+
+function orderCard(order){
+
+    const status =
+    String(
+        order.status ||
+        "جديد"
+    );
+
+
+    let statusClass =
+    "new";
+
+
+    if(status==="قيد التجهيز"){
+
+        statusClass =
+        "preparing";
+
+    }
+
+
+    if(status==="جاهز للاستلام"){
+
+        statusClass =
+        "ready";
+
+    }
+
+
+    if(status==="مكتمل"){
+
+        statusClass =
+        "done";
+
+    }
+
+
+    return `
+
+    <div class="order-card">
+
+        <div class="order-top">
+
+            <div>
+
+                <div class="order-number">
+                    الطلب #${escapeHtml(
+                        String(
+                            order.orderId ||
+                            order.id ||
+                            ""
+                        )
+                    )}
+                </div>
+
+                <div class="order-date">
+                    ${escapeHtml(
+                        String(
+                            order.date ||
+                            ""
+                        )
+                    )}
+                </div>
+
+            </div>
+
+
+            <span class="status ${statusClass}">
+                ${escapeHtml(status)}
+            </span>
+
+        </div>
+
+
+        <div class="order-products">
+            ${escapeHtml(
+                order.products ||
+                ""
+            )}
+        </div>
+
+
+        <div class="order-total">
+
+            <span>
+                الإجمالي
+            </span>
+
+            <strong>
+                ${formatPrice(
+                    order.total
+                )}
+                ريال
+            </strong>
+
+        </div>
+
+    </div>
+
+    `;
+
+}
+
+
+/* =====================================================
+   التنقل
+===================================================== */
+
+function bindNavigation(){
+
+    document.addEventListener(
+        "click",
+        function(e){
+
+            const btn =
+            e.target.closest(
+                "[data-page]"
+            );
+
+            if(!btn) return;
+
+
+            const page =
+            btn.dataset.page;
+
+
+            if(!page) return;
+
+
+            navigate(page);
+
+        }
+    );
+
+
+    document
+    .getElementById(
+        "topCartBtn"
+    )
+    .addEventListener(
+        "click",
+        function(){
+
+            navigate("cart");
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   Navigate
+===================================================== */
+
+function navigate(page){
+
+    document
+    .querySelectorAll(".page")
+    .forEach(function(section){
+
+        section.classList.remove(
+            "active"
+        );
+
+    });
+
+
+    const target =
+    document.getElementById(
+        "page-" + page
+    );
+
+
+    if(!target){
+
+        return;
+
+    }
+
+
+    target.classList.add(
+        "active"
+    );
+
+
+    document
+    .querySelectorAll(
+        ".menu-item"
+    )
+    .forEach(function(item){
+
+        item.classList.toggle(
+            "active",
+            item.dataset.page===page
+        );
+
+    });
+
+
+    document
+    .querySelectorAll(
+        ".mobile-nav button"
+    )
+    .forEach(function(item){
+
+        item.classList.toggle(
+            "active",
+            item.dataset.page===page
+        );
+
+    });
+
+
+    const titles = {
+
+        home:"الرئيسية",
+
+        store:"المقصف",
+
+        cart:"السلة",
+
+        orders:"طلباتي",
+
+        profile:"حسابي",
+
+        login:
+        currentStudent
+        ?"حسابي"
+        :"تسجيل الدخول"
+
+    };
+
+
+    document
+    .getElementById(
+        "topbarTitle"
+    )
+    .textContent =
+    titles[page] ||
+    "المقصف";
+
+
+    if(page==="cart"){
+
+        renderCart();
+
+    }
+
+
+    if(page==="orders"){
+
+        loadOrders();
+
+    }
+
+
+    if(page==="profile"){
+
+        renderProfile();
+
+    }
+
+
+    if(page==="login"){
+
+        if(currentStudent){
+
+            showAuth("login");
+
+        }
+
+    }
+
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+}
+
+
+/* =====================================================
+   Sidebar
+===================================================== */
+
+function bindSidebar(){
+
+    const collapse =
+    document.getElementById(
+        "collapseSidebar"
+    );
+
+
+    collapse.addEventListener(
+        "click",
+        function(){
+
+            sidebar.classList.toggle(
+                "collapsed"
+            );
+
+
+            const icon =
+            collapse.querySelector(
+                "use"
+            );
+
+
+            if(
+                sidebar.classList.contains(
+                    "collapsed"
+                )
+            ){
+
+                icon.setAttribute(
+                    "href",
+                    "#i-chevron-left"
+                );
+
+            }else{
+
+                icon.setAttribute(
+                    "href",
+                    "#i-chevron-right"
+                );
+
+            }
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   Toast
+===================================================== */
+
+function showToast(
+    message,
+    type=""
+){
+
+    const toast =
+    document.createElement(
+        "div"
+    );
+
+
+    toast.className =
+    "toast " + type;
+
+
+    toast.textContent =
+    message;
+
+
+    toastContainer.appendChild(
+        toast
+    );
+
+
+    setTimeout(
+        function(){
+
+            toast.remove();
+
+        },
+        3500
+    );
+
+}
+
+
+/* =====================================================
+   السعر
+===================================================== */
+
+function formatPrice(value){
+
+    const number =
+    Number(value)||0;
+
+
+    return number.toLocaleString(
+        "ar-SA",
+        {
+            minimumFractionDigits:
+            number % 1 === 0
+            ? 0
+            : 2,
+
+            maximumFractionDigits:2
+        }
+    );
+
+}
+
+
+/* =====================================================
+   حماية HTML
+===================================================== */
+
+function escapeHtml(value){
+
+    return String(
+        value ?? ""
+    )
+    .replace(
+        /&/g,
+        "&amp;"
+    )
+    .replace(
+        /</g,
+        "&lt;"
+    )
+    .replace(
+        />/g,
+        "&gt;"
+    )
+    .replace(
+        /"/g,
+        "&quot;"
+    )
+    .replace(
+        /'/g,
+        "&#039;"
+    );
+
+}
+
+</script>
+
+</body>
+</html>

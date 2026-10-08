@@ -1,0 +1,3555 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>إدارة المقصف | ثانوية الشيخ عبدالعزيز بن باز</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect"
+href="https://fonts.gstatic.com"
+crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;600;700;800&display=swap"
+rel="stylesheet">
+
+<style>
+
+:root{
+
+  --green:#0d6552;
+  --green-dark:#084b3e;
+  --green-light:#eaf5f1;
+
+  --gold:#b99854;
+  --gold-light:#f5efdf;
+
+  --bg:#f5f7f6;
+  --white:#ffffff;
+
+  --text:#18221f;
+  --muted:#75817d;
+
+  --border:#e4e9e7;
+
+  --red:#c94b4b;
+  --orange:#c9862f;
+  --blue:#3975a8;
+
+  --shadow:
+    0 10px 35px rgba(20,50,43,.07);
+
+  --radius:18px;
+
+}
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+
+  font-family:"Tajawal",sans-serif;
+
+  background:var(--bg);
+
+  color:var(--text);
+
+  min-height:100vh;
+
+}
+
+button,
+input,
+select{
+
+  font-family:inherit;
+
+}
+
+button{
+
+  cursor:pointer;
+
+  border:0;
+
+}
+
+.hidden{
+  display:none!important;
+}
+
+
+/* =====================================================
+   شاشة الدخول
+===================================================== */
+
+.login-screen{
+
+  min-height:100vh;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  padding:20px;
+
+  background:
+    radial-gradient(
+      circle at top right,
+      rgba(13,101,82,.14),
+      transparent 35%
+    ),
+    var(--bg);
+
+}
+
+.login-box{
+
+  width:100%;
+
+  max-width:430px;
+
+  background:#fff;
+
+  border:1px solid var(--border);
+
+  border-radius:26px;
+
+  padding:34px;
+
+  box-shadow:var(--shadow);
+
+  text-align:center;
+
+}
+
+.logo{
+
+  width:70px;
+
+  height:70px;
+
+  margin:auto;
+
+  border-radius:20px;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  background:var(--green);
+
+  color:#fff;
+
+}
+
+.logo svg{
+
+  width:38px;
+
+  height:38px;
+
+}
+
+.login-box h1{
+
+  margin-top:22px;
+
+  font-size:25px;
+
+}
+
+.login-box p{
+
+  color:var(--muted);
+
+  margin-top:8px;
+
+  line-height:1.8;
+
+}
+
+.input-group{
+
+  margin-top:22px;
+
+  text-align:right;
+
+}
+
+.input-group label{
+
+  display:block;
+
+  font-size:14px;
+
+  font-weight:700;
+
+  margin-bottom:8px;
+
+}
+
+.input-group input{
+
+  width:100%;
+
+  height:50px;
+
+  border:1px solid var(--border);
+
+  border-radius:13px;
+
+  padding:0 15px;
+
+  outline:none;
+
+  font-size:15px;
+
+  transition:.2s;
+
+}
+
+.input-group input:focus{
+
+  border-color:var(--green);
+
+  box-shadow:
+    0 0 0 4px rgba(13,101,82,.08);
+
+}
+
+.login-button{
+
+  width:100%;
+
+  height:52px;
+
+  margin-top:22px;
+
+  background:var(--green);
+
+  color:#fff;
+
+  border-radius:13px;
+
+  font-weight:800;
+
+  font-size:15px;
+
+}
+
+.login-button:hover{
+
+  background:var(--green-dark);
+
+}
+
+.login-error{
+
+  margin-top:15px;
+
+  color:var(--red);
+
+  font-size:14px;
+
+}
+
+
+/* =====================================================
+   التطبيق
+===================================================== */
+
+.app{
+
+  display:none;
+
+}
+
+.app.active{
+
+  display:block;
+
+}
+
+
+/* =====================================================
+   الشريط الجانبي
+===================================================== */
+
+.sidebar{
+
+  position:fixed;
+
+  right:0;
+
+  top:0;
+
+  bottom:0;
+
+  width:270px;
+
+  background:#fff;
+
+  border-left:1px solid var(--border);
+
+  padding:22px 16px;
+
+  z-index:100;
+
+}
+
+.brand{
+
+  padding:8px 10px 24px;
+
+  border-bottom:1px solid var(--border);
+
+}
+
+.brand-title{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:10px;
+
+  font-weight:800;
+
+}
+
+.brand-icon{
+
+  width:43px;
+
+  height:43px;
+
+  border-radius:13px;
+
+  background:var(--green);
+
+  color:#fff;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+}
+
+.brand-icon svg{
+
+  width:24px;
+
+}
+
+.brand small{
+
+  display:block;
+
+  color:var(--muted);
+
+  margin-top:8px;
+
+  line-height:1.6;
+
+  font-size:12px;
+
+}
+
+.nav{
+
+  margin-top:20px;
+
+}
+
+.nav button{
+
+  width:100%;
+
+  height:50px;
+
+  background:transparent;
+
+  border-radius:12px;
+
+  display:flex;
+
+  align-items:center;
+
+  gap:12px;
+
+  padding:0 14px;
+
+  color:#596762;
+
+  font-weight:700;
+
+  margin-bottom:6px;
+
+  text-align:right;
+
+}
+
+.nav button svg{
+
+  width:21px;
+
+  height:21px;
+
+}
+
+.nav button.active{
+
+  background:var(--green-light);
+
+  color:var(--green);
+
+}
+
+.logout{
+
+  position:absolute;
+
+  bottom:20px;
+
+  right:16px;
+
+  left:16px;
+
+  height:48px;
+
+  border-radius:12px;
+
+  background:#fff1f1;
+
+  color:var(--red);
+
+  font-weight:800;
+
+}
+
+
+/* =====================================================
+   المحتوى
+===================================================== */
+
+.main{
+
+  margin-right:270px;
+
+  min-height:100vh;
+
+}
+
+.topbar{
+
+  height:76px;
+
+  background:#fff;
+
+  border-bottom:1px solid var(--border);
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:space-between;
+
+  padding:0 30px;
+
+  position:sticky;
+
+  top:0;
+
+  z-index:50;
+
+}
+
+.top-title h2{
+
+  font-size:20px;
+
+}
+
+.top-title p{
+
+  color:var(--muted);
+
+  font-size:12px;
+
+  margin-top:4px;
+
+}
+
+.admin-badge{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:8px;
+
+  background:var(--green-light);
+
+  color:var(--green);
+
+  padding:9px 13px;
+
+  border-radius:10px;
+
+  font-size:13px;
+
+  font-weight:700;
+
+}
+
+.content{
+
+  padding:28px;
+
+}
+
+
+/* =====================================================
+   الصفحات
+===================================================== */
+
+.page{
+
+  display:none;
+
+}
+
+.page.active{
+
+  display:block;
+
+}
+
+
+/* =====================================================
+   الإحصائيات
+===================================================== */
+
+.stats{
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(4,minmax(0,1fr));
+
+  gap:16px;
+
+  margin-bottom:24px;
+
+}
+
+.stat-card{
+
+  background:#fff;
+
+  border:1px solid var(--border);
+
+  border-radius:var(--radius);
+
+  padding:21px;
+
+  box-shadow:0 5px 20px rgba(20,50,43,.035);
+
+}
+
+.stat-top{
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:space-between;
+
+}
+
+.stat-icon{
+
+  width:44px;
+
+  height:44px;
+
+  border-radius:13px;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  background:var(--green-light);
+
+  color:var(--green);
+
+}
+
+.stat-icon svg{
+
+  width:22px;
+
+}
+
+.stat-card small{
+
+  display:block;
+
+  color:var(--muted);
+
+  margin-top:16px;
+
+  font-weight:600;
+
+}
+
+.stat-card strong{
+
+  display:block;
+
+  font-size:27px;
+
+  margin-top:5px;
+
+}
+
+
+/* =====================================================
+   العنوان
+===================================================== */
+
+.section-head{
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:space-between;
+
+  gap:15px;
+
+  margin-bottom:17px;
+
+}
+
+.section-head h3{
+
+  font-size:19px;
+
+}
+
+.section-head p{
+
+  color:var(--muted);
+
+  font-size:13px;
+
+  margin-top:4px;
+
+}
+
+
+/* =====================================================
+   البطاقات
+===================================================== */
+
+.card{
+
+  background:#fff;
+
+  border:1px solid var(--border);
+
+  border-radius:var(--radius);
+
+  box-shadow:0 5px 20px rgba(20,50,43,.035);
+
+}
+
+
+/* =====================================================
+   الفلاتر
+===================================================== */
+
+.filters{
+
+  display:flex;
+
+  gap:10px;
+
+  flex-wrap:wrap;
+
+  margin-bottom:15px;
+
+}
+
+.search{
+
+  flex:1;
+
+  min-width:220px;
+
+}
+
+.search input,
+.filters select{
+
+  height:46px;
+
+  width:100%;
+
+  border:1px solid var(--border);
+
+  border-radius:11px;
+
+  padding:0 14px;
+
+  outline:none;
+
+  background:#fff;
+
+}
+
+.search input:focus,
+.filters select:focus{
+
+  border-color:var(--green);
+
+}
+
+
+/* =====================================================
+   الجدول
+===================================================== */
+
+.table-wrap{
+
+  overflow:auto;
+
+  border-radius:var(--radius);
+
+}
+
+table{
+
+  width:100%;
+
+  border-collapse:collapse;
+
+  min-width:1000px;
+
+}
+
+thead{
+
+  background:#f7f9f8;
+
+}
+
+th{
+
+  padding:15px;
+
+  text-align:right;
+
+  color:#63706c;
+
+  font-size:12px;
+
+  white-space:nowrap;
+
+}
+
+td{
+
+  padding:16px 15px;
+
+  border-top:1px solid var(--border);
+
+  font-size:13px;
+
+  vertical-align:middle;
+
+}
+
+tbody tr:hover{
+
+  background:#fbfcfc;
+
+}
+
+.order-number{
+
+  color:var(--green);
+
+  font-weight:800;
+
+}
+
+.student-name{
+
+  font-weight:800;
+
+}
+
+.products-cell{
+
+  max-width:330px;
+
+  line-height:1.8;
+
+  color:#53615c;
+
+}
+
+
+/* =====================================================
+   الحالة
+===================================================== */
+
+.status{
+
+  display:inline-flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  padding:7px 10px;
+
+  border-radius:8px;
+
+  font-size:11px;
+
+  font-weight:800;
+
+  white-space:nowrap;
+
+}
+
+.status.new{
+
+  background:#eef4ff;
+
+  color:#3975a8;
+
+}
+
+.status.preparing{
+
+  background:#fff5e7;
+
+  color:#c9862f;
+
+}
+
+.status.ready{
+
+  background:var(--green-light);
+
+  color:var(--green);
+
+}
+
+.status.done{
+
+  background:#edf7ee;
+
+  color:#328044;
+
+}
+
+.status.cancel{
+
+  background:#fff0f0;
+
+  color:var(--red);
+
+}
+
+
+/* =====================================================
+   زر الحالة
+===================================================== */
+
+.status-select{
+
+  height:37px;
+
+  border:1px solid var(--border);
+
+  border-radius:9px;
+
+  padding:0 9px;
+
+  background:#fff;
+
+  font-size:12px;
+
+}
+
+
+/* =====================================================
+   المبيعات
+===================================================== */
+
+.sales-grid{
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(3,minmax(0,1fr));
+
+  gap:16px;
+
+  margin-bottom:20px;
+
+}
+
+.sales-card{
+
+  padding:23px;
+
+}
+
+.sales-card .label{
+
+  color:var(--muted);
+
+  font-size:13px;
+
+}
+
+.sales-card .value{
+
+  font-size:29px;
+
+  font-weight:800;
+
+  margin-top:9px;
+
+}
+
+.sales-card .sub{
+
+  margin-top:7px;
+
+  color:var(--green);
+
+  font-size:12px;
+
+  font-weight:700;
+
+}
+
+
+/* =====================================================
+   تقسيم المبيعات
+===================================================== */
+
+.two-columns{
+
+  display:grid;
+
+  grid-template-columns:
+    1.2fr .8fr;
+
+  gap:18px;
+
+}
+
+.panel{
+
+  padding:22px;
+
+}
+
+.panel-title{
+
+  font-size:16px;
+
+  font-weight:800;
+
+  margin-bottom:18px;
+
+}
+
+.payment-row{
+
+  display:flex;
+
+  justify-content:space-between;
+
+  align-items:center;
+
+  padding:14px 0;
+
+  border-bottom:1px solid var(--border);
+
+}
+
+.payment-row:last-child{
+
+  border-bottom:0;
+
+}
+
+.payment-name{
+
+  font-weight:700;
+
+}
+
+.payment-value{
+
+  font-weight:800;
+
+  color:var(--green);
+
+}
+
+.product-rank{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:12px;
+
+  padding:13px 0;
+
+  border-bottom:1px solid var(--border);
+
+}
+
+.product-rank:last-child{
+
+  border-bottom:0;
+
+}
+
+.rank-number{
+
+  width:32px;
+
+  height:32px;
+
+  border-radius:9px;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  background:var(--green-light);
+
+  color:var(--green);
+
+  font-weight:800;
+
+}
+
+.rank-info{
+
+  flex:1;
+
+}
+
+.rank-info strong{
+
+  display:block;
+
+  font-size:13px;
+
+}
+
+.rank-info small{
+
+  color:var(--muted);
+
+  font-size:11px;
+
+}
+
+
+/* =====================================================
+   يوميات المبيعات
+===================================================== */
+
+.daily-list{
+
+  margin-top:10px;
+
+}
+
+.daily-row{
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:space-between;
+
+  padding:13px 0;
+
+  border-bottom:1px solid var(--border);
+
+}
+
+.daily-row:last-child{
+
+  border-bottom:0;
+
+}
+
+.daily-date{
+
+  color:var(--muted);
+
+  font-size:13px;
+
+}
+
+.daily-total{
+
+  font-weight:800;
+
+  color:var(--green);
+
+}
+
+
+/* =====================================================
+   زر التحديث
+===================================================== */
+
+.refresh-btn{
+
+  height:43px;
+
+  padding:0 15px;
+
+  border-radius:10px;
+
+  background:var(--green);
+
+  color:#fff;
+
+  font-weight:800;
+
+  display:flex;
+
+  align-items:center;
+
+  gap:8px;
+
+}
+
+.refresh-btn svg{
+
+  width:17px;
+
+}
+
+
+/* =====================================================
+   نافذة تفاصيل
+===================================================== */
+
+.modal{
+
+  position:fixed;
+
+  inset:0;
+
+  background:rgba(12,28,24,.45);
+
+  display:none;
+
+  align-items:center;
+
+  justify-content:center;
+
+  padding:20px;
+
+  z-index:500;
+
+}
+
+.modal.active{
+
+  display:flex;
+
+}
+
+.modal-box{
+
+  width:100%;
+
+  max-width:650px;
+
+  max-height:90vh;
+
+  overflow:auto;
+
+  background:#fff;
+
+  border-radius:22px;
+
+  padding:25px;
+
+}
+
+.modal-head{
+
+  display:flex;
+
+  justify-content:space-between;
+
+  align-items:center;
+
+  margin-bottom:20px;
+
+}
+
+.close{
+
+  width:38px;
+
+  height:38px;
+
+  border-radius:10px;
+
+  background:#f2f4f3;
+
+  color:#555;
+
+}
+
+.detail-row{
+
+  display:flex;
+
+  justify-content:space-between;
+
+  gap:20px;
+
+  padding:14px 0;
+
+  border-bottom:1px solid var(--border);
+
+}
+
+.detail-row span:first-child{
+
+  color:var(--muted);
+
+}
+
+.detail-row strong{
+
+  text-align:left;
+
+}
+
+
+/* =====================================================
+   إشعار
+===================================================== */
+
+.toast{
+
+  position:fixed;
+
+  left:25px;
+
+  bottom:25px;
+
+  background:#16241f;
+
+  color:#fff;
+
+  padding:13px 17px;
+
+  border-radius:12px;
+
+  box-shadow:var(--shadow);
+
+  transform:translateY(100px);
+
+  opacity:0;
+
+  transition:.25s;
+
+  z-index:1000;
+
+  font-size:13px;
+
+}
+
+.toast.show{
+
+  transform:translateY(0);
+
+  opacity:1;
+
+}
+
+
+/* =====================================================
+   الجوال
+===================================================== */
+
+@media(max-width:900px){
+
+  .sidebar{
+
+    position:fixed;
+
+    width:100%;
+
+    height:70px;
+
+    top:auto;
+
+    bottom:0;
+
+    right:0;
+
+    border-left:0;
+
+    border-top:1px solid var(--border);
+
+    padding:7px;
+
+    background:rgba(255,255,255,.96);
+
+    backdrop-filter:blur(15px);
+
+  }
+
+  .brand,
+  .logout{
+
+    display:none;
+
+  }
+
+  .nav{
+
+    margin:0;
+
+    display:grid;
+
+    grid-template-columns:
+      repeat(3,1fr);
+
+    gap:5px;
+
+  }
+
+  .nav button{
+
+    height:56px;
+
+    justify-content:center;
+
+    flex-direction:column;
+
+    gap:4px;
+
+    padding:0;
+
+    margin:0;
+
+    font-size:10px;
+
+  }
+
+  .nav button svg{
+
+    width:20px;
+
+    height:20px;
+
+  }
+
+  .main{
+
+    margin-right:0;
+
+    padding-bottom:75px;
+
+  }
+
+  .topbar{
+
+    padding:0 16px;
+
+  }
+
+  .content{
+
+    padding:18px 14px;
+
+  }
+
+  .stats{
+
+    grid-template-columns:
+      repeat(2,minmax(0,1fr));
+
+  }
+
+  .sales-grid{
+
+    grid-template-columns:
+      repeat(2,minmax(0,1fr));
+
+  }
+
+  .two-columns{
+
+    grid-template-columns:1fr;
+
+  }
+
+}
+
+
+@media(max-width:560px){
+
+  .stats{
+
+    gap:10px;
+
+  }
+
+  .stat-card{
+
+    padding:16px;
+
+  }
+
+  .stat-card strong{
+
+    font-size:22px;
+
+  }
+
+  .stat-icon{
+
+    width:38px;
+
+    height:38px;
+
+  }
+
+  .sales-grid{
+
+    grid-template-columns:1fr;
+
+  }
+
+  .section-head{
+
+    align-items:flex-start;
+
+  }
+
+  .admin-badge{
+
+    display:none;
+
+  }
+
+  .top-title h2{
+
+    font-size:17px;
+
+  }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+<!-- ===================================================
+     الدخول
+=================================================== -->
+
+<section id="loginScreen" class="login-screen">
+
+  <div class="login-box">
+
+    <div class="logo">
+
+      <svg viewBox="0 0 24 24"
+           fill="none"
+           stroke="currentColor"
+           stroke-width="1.8">
+
+        <path d="M4 5h16v14H4z"/>
+
+        <path d="M8 9h8M8 13h5"/>
+
+      </svg>
+
+    </div>
+
+    <h1>لوحة إدارة المقصف</h1>
+
+    <p>
+      ثانوية الشيخ عبدالعزيز بن باز
+      <br>
+      الدخول مخصص لإدارة المقصف
+    </p>
+
+    <div class="input-group">
+
+      <label>رمز الإدارة</label>
+
+      <input
+        id="adminPin"
+        type="password"
+        inputmode="numeric"
+        placeholder="أدخل رمز الإدارة"
+      >
+
+    </div>
+
+    <button
+      class="login-button"
+      onclick="loginAdmin()"
+    >
+      دخول لوحة الإدارة
+    </button>
+
+    <div
+      id="loginError"
+      class="login-error"
+    ></div>
+
+  </div>
+
+</section>
+
+
+<!-- ===================================================
+     التطبيق
+=================================================== -->
+
+<div id="app" class="app">
+
+
+  <!-- الشريط الجانبي -->
+
+  <aside class="sidebar">
+
+    <div class="brand">
+
+      <div class="brand-title">
+
+        <div class="brand-icon">
+
+          <svg viewBox="0 0 24 24"
+               fill="none"
+               stroke="currentColor"
+               stroke-width="1.8">
+
+            <path d="M4 5h16v14H4z"/>
+
+            <path d="M8 9h8M8 13h5"/>
+
+          </svg>
+
+        </div>
+
+        <span>إدارة المقصف</span>
+
+      </div>
+
+      <small>
+        ثانوية الشيخ عبدالعزيز بن باز
+      </small>
+
+    </div>
+
+
+    <nav class="nav">
+
+      <button
+        class="active"
+        data-page="dashboard"
+        onclick="showPage('dashboard',this)"
+      >
+
+        <svg viewBox="0 0 24 24"
+             fill="none"
+             stroke="currentColor"
+             stroke-width="1.8">
+
+          <rect x="4" y="4" width="6" height="6" rx="1"/>
+          <rect x="14" y="4" width="6" height="6" rx="1"/>
+          <rect x="4" y="14" width="6" height="6" rx="1"/>
+          <rect x="14" y="14" width="6" height="6" rx="1"/>
+
+        </svg>
+
+        الرئيسية
+
+      </button>
+
+
+      <button
+        data-page="orders"
+        onclick="showPage('orders',this)"
+      >
+
+        <svg viewBox="0 0 24 24"
+             fill="none"
+             stroke="currentColor"
+             stroke-width="1.8">
+
+          <path d="M6 4h12v16H6z"/>
+          <path d="M9 8h6M9 12h6M9 16h4"/>
+
+        </svg>
+
+        الطلبات
+
+      </button>
+
+
+      <button
+        data-page="sales"
+        onclick="showPage('sales',this)"
+      >
+
+        <svg viewBox="0 0 24 24"
+             fill="none"
+             stroke="currentColor"
+             stroke-width="1.8">
+
+          <path d="M4 19V5"/>
+          <path d="M4 19h16"/>
+          <path d="m7 15 4-5 3 3 5-7"/>
+
+        </svg>
+
+        المبيعات
+
+      </button>
+
+    </nav>
+
+
+    <button
+      class="logout"
+      onclick="logoutAdmin()"
+    >
+      تسجيل الخروج
+    </button>
+
+  </aside>
+
+
+  <!-- المحتوى -->
+
+  <main class="main">
+
+    <header class="topbar">
+
+      <div class="top-title">
+
+        <h2 id="pageTitle">
+          الرئيسية
+        </h2>
+
+        <p>
+          إدارة المقصف المدرسي
+        </p>
+
+      </div>
+
+      <div class="admin-badge">
+
+        <span>●</span>
+
+        مدير المقصف
+
+      </div>
+
+    </header>
+
+
+    <div class="content">
+
+
+      <!-- ==========================================
+           الرئيسية
+      =========================================== -->
+
+      <section
+        id="page-dashboard"
+        class="page active"
+      >
+
+        <div class="stats">
+
+          <div class="stat-card">
+
+            <div class="stat-top">
+
+              <div class="stat-icon">
+
+                <svg viewBox="0 0 24 24"
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-width="1.8">
+
+                  <path d="M6 4h12v16H6z"/>
+                  <path d="M9 8h6M9 12h6M9 16h4"/>
+
+                </svg>
+
+              </div>
+
+            </div>
+
+            <small>طلبات اليوم</small>
+
+            <strong id="todayOrders">
+              0
+            </strong>
+
+          </div>
+
+
+          <div class="stat-card">
+
+            <div class="stat-top">
+
+              <div class="stat-icon">
+
+                <svg viewBox="0 0 24 24"
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-width="1.8">
+
+                  <circle cx="12" cy="12" r="8"/>
+                  <path d="M12 8v8M9.5 10.5c0-1 1-1.5 2.5-1.5s2.5.5 2.5 1.5-1 1.5-2.5 1.5-2.5.5-2.5 1.5 1 1.5 2.5 1.5 2.5-.5 2.5-1.5"/>
+
+                </svg>
+
+              </div>
+
+            </div>
+
+            <small>مبيعات اليوم</small>
+
+            <strong id="todaySales">
+              0 ريال
+            </strong>
+
+          </div>
+
+
+          <div class="stat-card">
+
+            <div class="stat-top">
+
+              <div class="stat-icon">
+
+                <svg viewBox="0 0 24 24"
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-width="1.8">
+
+                  <circle cx="12" cy="12" r="8"/>
+                  <path d="M12 8v4l3 2"/>
+
+                </svg>
+
+              </div>
+
+            </div>
+
+            <small>طلبات قيد المعالجة</small>
+
+            <strong id="pendingOrders">
+              0
+            </strong>
+
+          </div>
+
+
+          <div class="stat-card">
+
+            <div class="stat-top">
+
+              <div class="stat-icon">
+
+                <svg viewBox="0 0 24 24"
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-width="1.8">
+
+                  <path d="m5 12 4 4L19 6"/>
+
+                </svg>
+
+              </div>
+
+            </div>
+
+            <small>طلبات مكتملة</small>
+
+            <strong id="completedOrders">
+              0
+            </strong>
+
+          </div>
+
+        </div>
+
+
+        <div class="section-head">
+
+          <div>
+
+            <h3>آخر الطلبات</h3>
+
+            <p>
+              أحدث الطلبات المسجلة في المقصف
+            </p>
+
+          </div>
+
+          <button
+            class="refresh-btn"
+            onclick="loadAll()"
+          >
+
+            <svg viewBox="0 0 24 24"
+                 fill="none"
+                 stroke="currentColor"
+                 stroke-width="2">
+
+              <path d="M20 11a8 8 0 0 0-14-5L4 8"/>
+              <path d="M4 4v4h4"/>
+
+            </svg>
+
+            تحديث
+
+          </button>
+
+        </div>
+
+
+        <div class="card">
+
+          <div class="table-wrap">
+
+            <table>
+
+              <thead>
+
+                <tr>
+
+                  <th>الطلب</th>
+
+                  <th>الطالب</th>
+
+                  <th>المنتجات</th>
+
+                  <th>الإجمالي</th>
+
+                  <th>الدفع</th>
+
+                  <th>الحالة</th>
+
+                  <th>التاريخ</th>
+
+                </tr>
+
+              </thead>
+
+              <tbody
+                id="dashboardOrders"
+              ></tbody>
+
+            </table>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- ==========================================
+           الطلبات
+      =========================================== -->
+
+      <section
+        id="page-orders"
+        class="page"
+      >
+
+        <div class="section-head">
+
+          <div>
+
+            <h3>إدارة الطلبات</h3>
+
+            <p>
+              متابعة جميع طلبات المقصف
+            </p>
+
+          </div>
+
+          <button
+            class="refresh-btn"
+            onclick="loadOrders()"
+          >
+
+            تحديث
+
+          </button>
+
+        </div>
+
+
+        <div class="filters">
+
+          <div class="search">
+
+            <input
+              id="orderSearch"
+              type="search"
+              placeholder="ابحث برقم الطلب أو اسم الطالب..."
+              oninput="renderOrders()"
+            >
+
+          </div>
+
+
+          <select
+            id="statusFilter"
+            onchange="renderOrders()"
+          >
+
+            <option value="">جميع الحالات</option>
+
+            <option value="جديد">جديد</option>
+
+            <option value="قيد التجهيز">
+              قيد التجهيز
+            </option>
+
+            <option value="جاهز للاستلام">
+              جاهز للاستلام
+            </option>
+
+            <option value="مكتمل">
+              مكتمل
+            </option>
+
+            <option value="ملغي">
+              ملغي
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <div class="card">
+
+          <div class="table-wrap">
+
+            <table>
+
+              <thead>
+
+                <tr>
+
+                  <th>رقم الطلب</th>
+
+                  <th>اسم الطالب</th>
+
+                  <th>رقم الطالب</th>
+
+                  <th>الطلب</th>
+
+                  <th>المجموع</th>
+
+                  <th>الضريبة</th>
+
+                  <th>الإجمالي</th>
+
+                  <th>الدفع</th>
+
+                  <th>الحالة</th>
+
+                  <th>التاريخ</th>
+
+                </tr>
+
+              </thead>
+
+              <tbody id="ordersTable"></tbody>
+
+            </table>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- ==========================================
+           المبيعات
+      =========================================== -->
+
+      <section
+        id="page-sales"
+        class="page"
+      >
+
+        <div class="section-head">
+
+          <div>
+
+            <h3>المبيعات</h3>
+
+            <p>
+              ملخص مالي لمبيعات المقصف
+            </p>
+
+          </div>
+
+          <button
+            class="refresh-btn"
+            onclick="loadSales()"
+          >
+
+            تحديث
+
+          </button>
+
+        </div>
+
+
+        <div class="sales-grid">
+
+          <div class="card sales-card">
+
+            <div class="label">
+              إجمالي المبيعات
+            </div>
+
+            <div
+              class="value"
+              id="totalSales"
+            >
+              0 ريال
+            </div>
+
+            <div
+              class="sub"
+              id="totalOrdersSales"
+            >
+              0 طلب
+            </div>
+
+          </div>
+
+
+          <div class="card sales-card">
+
+            <div class="label">
+              مبيعات اليوم
+            </div>
+
+            <div
+              class="value"
+              id="salesToday"
+            >
+              0 ريال
+            </div>
+
+            <div
+              class="sub"
+              id="salesTodayOrders"
+            >
+              0 طلب
+            </div>
+
+          </div>
+
+
+          <div class="card sales-card">
+
+            <div class="label">
+              مبيعات مدى
+            </div>
+
+            <div
+              class="value"
+              id="madaSales"
+            >
+              0 ريال
+            </div>
+
+            <div class="sub">
+              الدفع الإلكتروني
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div class="two-columns">
+
+
+          <div class="card panel">
+
+            <div class="panel-title">
+              طرق الدفع
+            </div>
+
+
+            <div class="payment-row">
+
+              <div class="payment-name">
+                مدى
+              </div>
+
+              <div
+                class="payment-value"
+                id="madaSales2"
+              >
+                0 ريال
+              </div>
+
+            </div>
+
+
+            <div class="payment-row">
+
+              <div class="payment-name">
+                رصيد الطالب
+              </div>
+
+              <div
+                class="payment-value"
+                id="balanceSales"
+              >
+                0 ريال
+              </div>
+
+            </div>
+
+
+            <div class="payment-row">
+
+              <div class="payment-name">
+                دفع آخر
+              </div>
+
+              <div
+                class="payment-value"
+                id="cashSales"
+              >
+                0 ريال
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <div class="card panel">
+
+            <div class="panel-title">
+              الأكثر مبيعاً
+            </div>
+
+            <div id="topProducts"></div>
+
+          </div>
+
+        </div>
+
+
+        <div
+          class="card panel"
+          style="margin-top:18px;"
+        >
+
+          <div class="panel-title">
+            المبيعات اليومية
+          </div>
+
+          <div id="dailySales"></div>
+
+        </div>
+
+      </section>
+
+    </div>
+
+  </main>
+
+</div>
+
+
+<!-- ===================================================
+     نافذة التفاصيل
+=================================================== -->
+
+<div
+  id="modal"
+  class="modal"
+  onclick="closeModal(event)"
+>
+
+  <div
+    class="modal-box"
+    onclick="event.stopPropagation()"
+  >
+
+    <div class="modal-head">
+
+      <h3>تفاصيل الطلب</h3>
+
+      <button
+        class="close"
+        onclick="closeModal()"
+      >
+        ×
+      </button>
+
+    </div>
+
+    <div id="modalContent"></div>
+
+  </div>
+
+</div>
+
+
+<div
+  id="toast"
+  class="toast"
+></div>
+
+
+<script>
+
+/* =====================================================
+   إعدادات
+===================================================== */
+
+const GOOGLE_SCRIPT_URL =
+"https://script.google.com/macros/s/AKfycbwudivVQZS8mUPvDV11wo6DwDBaEqKnpQyY4GL8n9GdO0lCPmgXF5VEXglNu4Xy69YA/exec";
+
+
+let adminToken =
+localStorage.getItem("canteen_admin_token") || "";
+
+
+let orders = [];
+
+let sales = null;
+
+
+/* =====================================================
+   API
+===================================================== */
+
+async function apiRequest(data){
+
+  const response =
+    await fetch(
+      GOOGLE_SCRIPT_URL,
+      {
+        method:"POST",
+
+        headers:{
+          "Content-Type":
+            "text/plain;charset=utf-8"
+        },
+
+        body:JSON.stringify(data)
+      }
+    );
+
+
+  return await response.json();
+}
+
+
+/* =====================================================
+   الدخول
+===================================================== */
+
+async function loginAdmin(){
+
+  const pin =
+    document
+      .getElementById("adminPin")
+      .value
+      .trim();
+
+
+  const error =
+    document
+      .getElementById("loginError");
+
+
+  error.textContent="";
+
+
+  if(!pin){
+
+    error.textContent =
+      "أدخل رمز الإدارة";
+
+    return;
+  }
+
+
+  try{
+
+    const result =
+      await apiRequest({
+        action:"adminLogin",
+        pin:pin
+      });
+
+
+    if(!result.success){
+
+      error.textContent =
+        result.message ||
+        "تعذر تسجيل الدخول";
+
+      return;
+    }
+
+
+    adminToken =
+      result.token;
+
+
+    localStorage.setItem(
+      "canteen_admin_token",
+      adminToken
+    );
+
+
+    showApp();
+
+
+  }catch(error){
+
+    document
+      .getElementById("loginError")
+      .textContent =
+      "تعذر الاتصال بالنظام";
+
+  }
+
+}
+
+
+/* =====================================================
+   تشغيل التطبيق
+===================================================== */
+
+function showApp(){
+
+  document
+    .getElementById("loginScreen")
+    .style.display="none";
+
+
+  document
+    .getElementById("app")
+    .classList.add("active");
+
+
+  loadAll();
+
+}
+
+
+/* =====================================================
+   تسجيل الخروج
+===================================================== */
+
+function logoutAdmin(){
+
+  localStorage.removeItem(
+    "canteen_admin_token"
+  );
+
+  adminToken="";
+
+  location.reload();
+
+}
+
+
+/* =====================================================
+   التنقل
+===================================================== */
+
+function showPage(page,button){
+
+  document
+    .querySelectorAll(".page")
+    .forEach(p =>
+      p.classList.remove("active")
+    );
+
+
+  const target =
+    document.getElementById(
+      "page-" + page
+    );
+
+
+  if(target){
+    target.classList.add("active");
+  }
+
+
+  document
+    .querySelectorAll(".nav button")
+    .forEach(b =>
+      b.classList.remove("active")
+    );
+
+
+  if(button){
+    button.classList.add("active");
+  }
+
+
+  const titles = {
+
+    dashboard:"الرئيسية",
+
+    orders:"إدارة الطلبات",
+
+    sales:"المبيعات"
+
+  };
+
+
+  document
+    .getElementById("pageTitle")
+    .textContent =
+      titles[page] || "لوحة الإدارة";
+
+
+  if(page==="orders"){
+    loadOrders();
+  }
+
+
+  if(page==="sales"){
+    loadSales();
+  }
+
+}
+
+
+/* =====================================================
+   تحميل الكل
+===================================================== */
+
+async function loadAll(){
+
+  await Promise.all([
+    loadDashboard(),
+    loadOrders(),
+    loadSales()
+  ]);
+
+}
+
+
+/* =====================================================
+   لوحة المعلومات
+===================================================== */
+
+async function loadDashboard(){
+
+  try{
+
+    const result =
+      await apiRequest({
+
+        action:"adminDashboard",
+
+        token:adminToken
+
+      });
+
+
+    if(!result.success){
+
+      handleSession(result);
+
+      return;
+    }
+
+
+    const d =
+      result.dashboard;
+
+
+    document
+      .getElementById("todayOrders")
+      .textContent =
+      d.todayOrders;
+
+
+    document
+      .getElementById("todaySales")
+      .textContent =
+      money(d.todaySales);
+
+
+    document
+      .getElementById("pendingOrders")
+      .textContent =
+      d.pendingOrders;
+
+
+    document
+      .getElementById("completedOrders")
+      .textContent =
+      d.completedOrders;
+
+
+  }catch(error){
+
+    toast(
+      "تعذر تحميل الإحصائيات"
+    );
+
+  }
+
+}
+
+
+/* =====================================================
+   الطلبات
+===================================================== */
+
+async function loadOrders(){
+
+  try{
+
+    const result =
+      await apiRequest({
+
+        action:"adminOrders",
+
+        token:adminToken
+
+      });
+
+
+    if(!result.success){
+
+      handleSession(result);
+
+      return;
+    }
+
+
+    orders =
+      Array.isArray(result.orders)
+        ? result.orders
+        : [];
+
+
+    renderOrders();
+
+    renderDashboardOrders();
+
+
+  }catch(error){
+
+    toast(
+      "تعذر تحميل الطلبات"
+    );
+
+  }
+
+}
+
+
+/* =====================================================
+   عرض الطلبات
+===================================================== */
+
+function renderOrders(){
+
+  const tbody =
+    document.getElementById(
+      "ordersTable"
+    );
+
+
+  const search =
+    (
+      document
+        .getElementById("orderSearch")
+        .value || ""
+    )
+    .trim()
+    .toLowerCase();
+
+
+  const status =
+    document
+      .getElementById("statusFilter")
+      .value;
+
+
+  const filtered =
+    orders.filter(order => {
+
+      const text =
+        (
+          order.id +
+          " " +
+          order.studentName +
+          " " +
+          order.studentId
+        )
+        .toLowerCase();
+
+
+      const matchesSearch =
+        !search ||
+        text.includes(search);
+
+
+      const matchesStatus =
+        !status ||
+        order.status === status;
+
+
+      return (
+        matchesSearch &&
+        matchesStatus
+      );
+
+    });
+
+
+  if(!filtered.length){
+
+    tbody.innerHTML = `
+      <tr>
+        <td colspan="10"
+            style="text-align:center;padding:40px;color:#78847f">
+          لا توجد طلبات مطابقة
+        </td>
+      </tr>
+    `;
+
+    return;
+  }
+
+
+  tbody.innerHTML =
+    filtered.map(order => `
+
+      <tr>
+
+        <td>
+
+          <span
+            class="order-number"
+            style="cursor:pointer"
+            onclick="showOrder('${escapeAttr(order.id)}')"
+          >
+            ${escapeHtml(order.id)}
+          </span>
+
+        </td>
+
+        <td>
+
+          <span class="student-name">
+
+            ${escapeHtml(
+              order.studentName
+            )}
+
+          </span>
+
+        </td>
+
+        <td>
+          ${escapeHtml(
+            order.studentId
+          )}
+        </td>
+
+        <td class="products-cell">
+
+          ${escapeHtml(
+            order.products
+          )}
+
+        </td>
+
+        <td>
+          ${money(order.subtotal)}
+        </td>
+
+        <td>
+          ${money(order.tax)}
+        </td>
+
+        <td>
+          <strong>
+            ${money(order.total)}
+          </strong>
+        </td>
+
+        <td>
+          ${escapeHtml(
+            order.payment
+          )}
+        </td>
+
+        <td>
+
+          <select
+            class="status-select"
+            onchange="changeStatus(
+              '${escapeAttr(order.id)}',
+              this.value
+            )"
+          >
+
+            ${statusOptions(
+              order.status
+            )}
+
+          </select>
+
+        </td>
+
+        <td>
+          ${escapeHtml(
+            order.date
+          )}
+        </td>
+
+      </tr>
+
+    `).join("");
+
+}
+
+
+/* =====================================================
+   آخر الطلبات
+===================================================== */
+
+function renderDashboardOrders(){
+
+  const tbody =
+    document.getElementById(
+      "dashboardOrders"
+    );
+
+
+  const latest =
+    orders.slice(0,8);
+
+
+  if(!latest.length){
+
+    tbody.innerHTML=`
+
+      <tr>
+
+        <td
+          colspan="7"
+          style="
+            text-align:center;
+            padding:40px;
+            color:#78847f
+          "
+        >
+          لا توجد طلبات حتى الآن
+        </td>
+
+      </tr>
+
+    `;
+
+    return;
+  }
+
+
+  tbody.innerHTML =
+    latest.map(order => `
+
+      <tr>
+
+        <td>
+
+          <span
+            class="order-number"
+            style="cursor:pointer"
+            onclick="showOrder('${escapeAttr(order.id)}')"
+          >
+            ${escapeHtml(order.id)}
+          </span>
+
+        </td>
+
+        <td>
+
+          <span class="student-name">
+
+            ${escapeHtml(
+              order.studentName
+            )}
+
+          </span>
+
+        </td>
+
+        <td class="products-cell">
+
+          ${escapeHtml(
+            order.products
+          )}
+
+        </td>
+
+        <td>
+
+          <strong>
+            ${money(order.total)}
+          </strong>
+
+        </td>
+
+        <td>
+          ${escapeHtml(
+            order.payment
+          )}
+        </td>
+
+        <td>
+
+          <span class="
+            status
+            ${statusClass(order.status)}
+          ">
+
+            ${escapeHtml(
+              order.status
+            )}
+
+          </span>
+
+        </td>
+
+        <td>
+          ${escapeHtml(
+            order.date
+          )}
+        </td>
+
+      </tr>
+
+    `).join("");
+
+}
+
+
+/* =====================================================
+   تغيير الحالة
+===================================================== */
+
+async function changeStatus(
+  orderId,
+  status
+){
+
+  try{
+
+    const result =
+      await apiRequest({
+
+        action:"updateOrderStatus",
+
+        token:adminToken,
+
+        orderId:orderId,
+
+        status:status
+
+      });
+
+
+    if(!result.success){
+
+      handleSession(result);
+
+      return;
+    }
+
+
+    const order =
+      orders.find(
+        o => o.id === orderId
+      );
+
+
+    if(order){
+      order.status = status;
+    }
+
+
+    renderOrders();
+
+    renderDashboardOrders();
+
+    loadDashboard();
+
+
+    toast(
+      "تم تحديث حالة الطلب"
+    );
+
+
+  }catch(error){
+
+    toast(
+      "تعذر تحديث حالة الطلب"
+    );
+
+  }
+
+}
+
+
+/* =====================================================
+   تفاصيل الطلب
+===================================================== */
+
+function showOrder(id){
+
+  const order =
+    orders.find(
+      o => o.id === id
+    );
+
+
+  if(!order) return;
+
+
+  document
+    .getElementById("modalContent")
+    .innerHTML = `
+
+      <div class="detail-row">
+
+        <span>رقم الطلب</span>
+
+        <strong>
+          ${escapeHtml(order.id)}
+        </strong>
+
+      </div>
+
+
+      <div class="detail-row">
+
+        <span>اسم الطالب</span>
+
+        <strong>
+          ${escapeHtml(order.studentName)}
+        </strong>
+
+      </div>
+
+
+      <div class="detail-row">
+
+        <span>رقم الطالب</span>
+
+        <strong>
+          ${escapeHtml(order.studentId)}
+        </strong>
+
+      </div>
+
+
+      <div class="detail-row">
+
+        <span>المنتجات</span>
+
+        <strong>
+          ${escapeHtml(order.products)}
+        </strong>
+
+      </div>
+
+
+      <div class="detail-row">
+
+        <span>المجموع</span>
+
+        <strong>
+          ${money(order.subtotal)}
+        </strong>
+
+      </div>
+
+
+      <div class="detail-row">
+
+        <span>الضريبة</span>
+
+        <strong>
+          ${money(order.tax)}
+        </strong>
+
+      </div>
+
+
+      <div class="detail-row">
+
+        <span>الإجمالي</span>
+
+        <strong>
+          ${money(order.total)}
+        </strong>
+
+      </div>
+
+
+      <div class="detail-row">
+
+        <span>طريقة الدفع</span>
+
+        <strong>
+          ${escapeHtml(order.payment)}
+        </strong>
+
+      </div>
+
+
+      <div class="detail-row">
+
+        <span>الحالة</span>
+
+        <strong>
+          ${escapeHtml(order.status)}
+        </strong>
+
+      </div>
+
+
+      <div class="detail-row">
+
+        <span>التاريخ</span>
+
+        <strong>
+          ${escapeHtml(order.date)}
+        </strong>
+
+      </div>
+
+    `;
+
+
+  document
+    .getElementById("modal")
+    .classList.add("active");
+
+}
+
+
+function closeModal(){
+
+  document
+    .getElementById("modal")
+    .classList.remove("active");
+
+}
+
+
+/* =====================================================
+   المبيعات
+===================================================== */
+
+async function loadSales(){
+
+  try{
+
+    const result =
+      await apiRequest({
+
+        action:"adminSales",
+
+        token:adminToken
+
+      });
+
+
+    if(!result.success){
+
+      handleSession(result);
+
+      return;
+    }
+
+
+    sales =
+      result.sales;
+
+
+    document
+      .getElementById("totalSales")
+      .textContent =
+      money(sales.totalSales);
+
+
+    document
+      .getElementById("totalOrdersSales")
+      .textContent =
+      sales.totalOrders +
+      " طلب";
+
+
+    document
+      .getElementById("salesToday")
+      .textContent =
+      money(sales.todaySales);
+
+
+    document
+      .getElementById("salesTodayOrders")
+      .textContent =
+      sales.todayOrders +
+      " طلب";
+
+
+    document
+      .getElementById("madaSales")
+      .textContent =
+      money(sales.madaSales);
+
+
+    document
+      .getElementById("madaSales2")
+      .textContent =
+      money(sales.madaSales);
+
+
+    document
+      .getElementById("balanceSales")
+      .textContent =
+      money(sales.balanceSales);
+
+
+    document
+      .getElementById("cashSales")
+      .textContent =
+      money(sales.cashSales);
+
+
+    renderTopProducts();
+
+    renderDailySales();
+
+
+  }catch(error){
+
+    toast(
+      "تعذر تحميل المبيعات"
+    );
+
+  }
+
+}
+
+
+/* =====================================================
+   المنتجات الأكثر مبيعاً
+===================================================== */
+
+function renderTopProducts(){
+
+  const box =
+    document.getElementById(
+      "topProducts"
+    );
+
+
+  const products =
+    sales &&
+    Array.isArray(sales.topProducts)
+      ? sales.topProducts
+      : [];
+
+
+  if(!products.length){
+
+    box.innerHTML = `
+      <div style="
+        color:#78847f;
+        padding:20px 0;
+        text-align:center;
+      ">
+        لا توجد بيانات مبيعات
+      </div>
+    `;
+
+    return;
+  }
+
+
+  box.innerHTML =
+    products.map(
+      (item,index) => `
+
+        <div class="product-rank">
+
+          <div class="rank-number">
+
+            ${index + 1}
+
+          </div>
+
+          <div class="rank-info">
+
+            <strong>
+
+              ${escapeHtml(
+                item.name
+              )}
+
+            </strong>
+
+            <small>
+
+              ${item.quantity}
+              قطعة مباعة
+
+            </small>
+
+          </div>
+
+        </div>
+
+      `
+    ).join("");
+
+}
+
+
+/* =====================================================
+   المبيعات اليومية
+===================================================== */
+
+function renderDailySales(){
+
+  const box =
+    document.getElementById(
+      "dailySales"
+    );
+
+
+  const days =
+    sales &&
+    Array.isArray(sales.dailySales)
+      ? sales.dailySales
+      : [];
+
+
+  if(!days.length){
+
+    box.innerHTML = `
+      <div style="
+        color:#78847f;
+        text-align:center;
+        padding:20px;
+      ">
+        لا توجد بيانات مبيعات
+      </div>
+    `;
+
+    return;
+  }
+
+
+  box.innerHTML =
+    days.map(day => `
+
+      <div class="daily-row">
+
+        <div class="daily-date">
+
+          ${escapeHtml(
+            day.date
+          )}
+
+        </div>
+
+        <div class="daily-total">
+
+          ${money(day.sales)}
+
+        </div>
+
+      </div>
+
+    `).join("");
+
+}
+
+
+/* =====================================================
+   أدوات
+===================================================== */
+
+function money(value){
+
+  return (
+    Number(value || 0)
+      .toFixed(2)
+      .replace(".00","")
+    +
+    " ريال"
+  );
+
+}
+
+
+function statusClass(status){
+
+  if(status === "جديد")
+    return "new";
+
+  if(status === "قيد التجهيز")
+    return "preparing";
+
+  if(status === "جاهز للاستلام")
+    return "ready";
+
+  if(status === "مكتمل")
+    return "done";
+
+  if(status === "ملغي")
+    return "cancel";
+
+  return "new";
+
+}
+
+
+function statusOptions(current){
+
+  return [
+
+    "جديد",
+
+    "قيد التجهيز",
+
+    "جاهز للاستلام",
+
+    "مكتمل",
+
+    "ملغي"
+
+  ]
+
+  .map(status => `
+
+    <option
+      value="${escapeAttr(status)}"
+      ${status === current ? "selected" : ""}
+    >
+
+      ${escapeHtml(status)}
+
+    </option>
+
+  `)
+
+  .join("");
+
+}
+
+
+function escapeHtml(value){
+
+  return String(value ?? "")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+
+}
+
+
+function escapeAttr(value){
+
+  return String(value ?? "")
+    .replace(/\\/g,"\\\\")
+    .replace(/'/g,"\\'")
+    .replace(/"/g,"&quot;");
+
+}
+
+
+/* =====================================================
+   جلسة الإدارة
+===================================================== */
+
+function handleSession(result){
+
+  if(
+    result &&
+    result.message &&
+    result.message.includes("جلسة")
+  ){
+
+    localStorage.removeItem(
+      "canteen_admin_token"
+    );
+
+    adminToken="";
+
+    document
+      .getElementById("app")
+      .classList.remove("active");
+
+    document
+      .getElementById("loginScreen")
+      .style.display="flex";
+
+    return;
+  }
+
+
+  toast(
+    result.message ||
+    "حدث خطأ"
+  );
+
+}
+
+
+/* =====================================================
+   إشعار
+===================================================== */
+
+let toastTimer;
+
+
+function toast(message){
+
+  const el =
+    document.getElementById(
+      "toast"
+    );
+
+
+  el.textContent =
+    message;
+
+
+  el.classList.add("show");
+
+
+  clearTimeout(toastTimer);
+
+
+  toastTimer =
+    setTimeout(() => {
+
+      el.classList.remove("show");
+
+    },3000);
+
+}
+
+
+/* =====================================================
+   التشغيل
+===================================================== */
+
+document
+  .getElementById("adminPin")
+  .addEventListener(
+    "keydown",
+    function(e){
+
+      if(e.key === "Enter"){
+        loginAdmin();
+      }
+
+    }
+  );
+
+
+if(adminToken){
+
+  showApp();
+
+}
+
+</script>
+
+</body>
+
+</html>
