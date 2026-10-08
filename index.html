@@ -11,35 +11,22 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
-
 :root{
     --green:#0d6552;
     --green-dark:#084b3e;
     --green-deep:#06382f;
     --green-light:#eaf5f1;
-
     --gold:#b99854;
-    --gold-light:#f5efdf;
-
-    --white:#ffffff;
+    --white:#fff;
     --bg:#f5f7f6;
-
     --text:#17231f;
     --muted:#73807c;
-
     --border:#e3e9e6;
-
     --danger:#c84c4c;
-    --orange:#c98a32;
-    --blue:#3c73a0;
-
     --shadow:0 12px 35px rgba(15,47,39,.07);
-
-    --radius:18px;
 }
 
 *{
@@ -59,9 +46,7 @@ body{
     min-height:100vh;
 }
 
-button,
-input,
-select{
+button,input,select{
     font-family:inherit;
 }
 
@@ -75,7 +60,7 @@ a{
 }
 
 /* =========================
-   شاشة التحميل
+   Loading
 ========================= */
 
 .loading-screen{
@@ -186,7 +171,6 @@ a{
 
 .school-info{
     min-width:0;
-    transition:.2s;
 }
 
 .school-info strong{
@@ -386,12 +370,7 @@ a{
 ========================= */
 
 .hero{
-    background:
-        linear-gradient(
-            135deg,
-            var(--green-deep),
-            var(--green)
-        );
+    background:linear-gradient(135deg,var(--green-deep),var(--green));
     border-radius:24px;
     min-height:280px;
     padding:38px;
@@ -504,11 +483,6 @@ a{
     background:var(--green-dark);
 }
 
-.btn-light{
-    background:var(--green-light);
-    color:var(--green);
-}
-
 .btn-danger{
     background:#fff0f0;
     color:var(--danger);
@@ -608,8 +582,7 @@ a{
 
 .products-grid{
     display:grid;
-    grid-template-columns:
-        repeat(4,minmax(0,1fr));
+    grid-template-columns:repeat(4,minmax(0,1fr));
     gap:15px;
 }
 
@@ -780,16 +753,6 @@ a{
     font-size:10px;
     color:var(--muted);
     margin-top:5px;
-}
-
-.form-actions{
-    display:flex;
-    gap:10px;
-    margin-top:8px;
-}
-
-.form-actions .btn{
-    flex:1;
 }
 
 /* =========================
@@ -1242,7 +1205,6 @@ a{
     max-width:360px;
     font-size:12px;
     box-shadow:0 15px 30px rgba(0,0,0,.15);
-    animation:toastIn .25s ease;
 }
 
 .toast.success{
@@ -1251,17 +1213,6 @@ a{
 
 .toast.error{
     background:var(--danger);
-}
-
-@keyframes toastIn{
-    from{
-        transform:translateY(15px);
-        opacity:0;
-    }
-    to{
-        transform:translateY(0);
-        opacity:1;
-    }
 }
 
 /* =========================
@@ -1311,14 +1262,7 @@ a{
     border-radius:10px;
     background:#f1f4f3;
     color:var(--muted);
-    display:flex;
-    align-items:center;
-    justify-content:center;
 }
-
-/* =========================
-   Mada
-========================= */
 
 .mada-box{
     border:1px solid var(--border);
@@ -1341,7 +1285,7 @@ a{
 }
 
 /* =========================
-   Mobile Bottom
+   Mobile Navigation
 ========================= */
 
 .mobile-nav{
@@ -1355,14 +1299,12 @@ a{
 @media(max-width:1150px){
 
     .products-grid{
-        grid-template-columns:
-            repeat(3,minmax(0,1fr));
+        grid-template-columns:repeat(3,minmax(0,1fr));
     }
 
     .hero-card{
         width:220px;
     }
-
 }
 
 @media(max-width:900px){
@@ -1399,8 +1341,7 @@ a{
     }
 
     .products-grid{
-        grid-template-columns:
-            repeat(2,minmax(0,1fr));
+        grid-template-columns:repeat(2,minmax(0,1fr));
     }
 
     .cart-layout{
@@ -1455,7 +1396,6 @@ a{
         background:var(--green-light);
         color:var(--green);
     }
-
 }
 
 @media(max-width:600px){
@@ -1542,9 +1482,7 @@ a{
         max-width:none;
         width:100%;
     }
-
 }
-
 </style>
 </head>
 
@@ -1610,27 +1548,13 @@ a{
 <path d="M6 11v6M18 11v6M4 19h16M8 14h8v5H8z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
 </symbol>
 
-<symbol id="i-wallet" viewBox="0 0 24 24">
-<path d="M4 6h15a2 2 0 0 1 2 2v10H5a2 2 0 0 1-2-2V7a1 1 0 0 1 1-1Z" fill="none" stroke="currentColor" stroke-width="1.8"/>
-<path d="M17 13h4M17 13a2 2 0 1 0 0 4h4v-4" fill="none" stroke="currentColor" stroke-width="1.8"/>
-</symbol>
-
 <symbol id="i-card" viewBox="0 0 24 24">
 <rect x="3" y="5" width="18" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/>
 <path d="M3 10h18M7 15h4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
 </symbol>
 
-<symbol id="i-menu" viewBox="0 0 24 24">
-<path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-</symbol>
-
 <symbol id="i-close" viewBox="0 0 24 24">
 <path d="m6 6 12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-</symbol>
-
-<symbol id="i-lock" viewBox="0 0 24 24">
-<rect x="5" y="10" width="14" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/>
-<path d="M8 10V7a4 4 0 0 1 8 0v3" fill="none" stroke="currentColor" stroke-width="1.8"/>
 </symbol>
 
 <symbol id="i-check" viewBox="0 0 24 24">
@@ -1643,13 +1567,11 @@ a{
 
 </svg>
 
-
 <!-- =========================
      Loading
 ========================= -->
 
 <div class="loading-screen" id="loadingScreen">
-
     <div class="loading-box">
 
         <div class="loading-logo">
@@ -1657,15 +1579,12 @@ a{
         </div>
 
         <h3>ثانوية الشيخ عبدالعزيز بن باز</h3>
-
         <p>جاري تجهيز المقصف الإلكتروني</p>
 
         <div class="loader"></div>
 
     </div>
-
 </div>
-
 
 <!-- =========================
      Sidebar
@@ -1685,7 +1604,6 @@ a{
         </div>
 
     </div>
-
 
     <div class="sidebar-menu">
 
@@ -1713,18 +1631,13 @@ a{
 
         <div class="menu-title" style="margin-top:20px">الحساب</div>
 
-        <button class="menu-item" data-page="profile">
-            <svg><use href="#i-user"></use></svg>
-            <span>حسابي</span>
-        </button>
-
-        <button class="menu-item" data-page="login">
+        <!-- مهم: نفس الزر يتحول إلى حسابي -->
+        <button class="menu-item" data-page="login" id="accountMenuBtn">
             <svg><use href="#i-login"></use></svg>
             <span>تسجيل الدخول</span>
         </button>
 
     </div>
-
 
     <div class="sidebar-bottom">
 
@@ -1736,467 +1649,398 @@ a{
 
 </aside>
 
-
 <!-- =========================
      Main
 ========================= -->
 
 <main class="main">
 
-    <header class="topbar">
+<header class="topbar">
+
+    <div>
+        <div class="topbar-title" id="topbarTitle">
+            الرئيسية
+        </div>
+
+        <div class="topbar-sub">
+            ثانوية الشيخ عبدالعزيز بن باز · النظام الإلكتروني للمقصف
+        </div>
+    </div>
+
+    <div class="topbar-left">
+
+        <button class="icon-btn" id="topCartBtn">
+            <svg><use href="#i-cart"></use></svg>
+            <span class="cart-count" id="cartCount">0</span>
+        </button>
+
+    </div>
+
+</header>
+
+<!-- =========================
+     Home
+========================= -->
+
+<section class="page active" id="page-home">
+
+    <div class="hero">
+
+        <div class="hero-content">
+
+            <div class="hero-label">
+                <span></span>
+                المقصف المدرسي الإلكتروني
+            </div>
+
+            <h1>
+                مرحباً بك في مقصف
+                ثانوية الشيخ عبدالعزيز بن باز
+            </h1>
+
+            <p>
+                اطلب وجبتك ومشروبك بسهولة، وتابع حالة طلبك
+                حتى يصبح جاهزاً للاستلام.
+            </p>
+
+            <div class="hero-actions">
+
+                <button class="btn btn-primary" data-page="store">
+                    <svg><use href="#i-store"></use></svg>
+                    تصفح المقصف
+                </button>
+
+                <button class="btn btn-outline" data-page="orders">
+                    <svg><use href="#i-orders"></use></svg>
+                    متابعة الطلبات
+                </button>
+
+            </div>
+
+        </div>
+
+        <div class="hero-card">
+
+            <div class="hero-card-top">
+                حالة النظام
+            </div>
+
+            <div class="hero-card-number">
+                يعمل
+            </div>
+
+            <div class="hero-card-note">
+                النظام الإلكتروني للمقصف متاح حالياً
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="section-head">
 
         <div>
-            <div class="topbar-title" id="topbarTitle">
-                الرئيسية
-            </div>
-
-            <div class="topbar-sub">
-                ثانوية الشيخ عبدالعزيز بن باز · النظام الإلكتروني للمقصف
-            </div>
+            <h2>الأكثر طلباً</h2>
+            <p>منتجات مختارة من المقصف المدرسي</p>
         </div>
 
+        <button class="link-btn" data-page="store">
+            عرض جميع المنتجات
+        </button>
 
-        <div class="topbar-left">
+    </div>
 
-            <button class="icon-btn" id="topCartBtn">
+    <div class="products-grid" id="homeProducts"></div>
 
-                <svg>
-                    <use href="#i-cart"></use>
+</section>
+
+<!-- =========================
+     Store
+========================= -->
+
+<section class="page" id="page-store">
+
+    <div class="section-head">
+
+        <div>
+            <h2>المقصف المدرسي</h2>
+            <p>اختر المنتجات وأضفها إلى سلة الطلب</p>
+        </div>
+
+        <div class="search-box">
+
+            <svg><use href="#i-search"></use></svg>
+
+            <input
+                type="search"
+                id="productSearch"
+                placeholder="ابحث عن منتج..."
+            >
+
+        </div>
+
+    </div>
+
+    <div class="categories" id="categories"></div>
+
+    <div style="height:18px"></div>
+
+    <div class="products-grid" id="productsGrid"></div>
+
+</section>
+
+<!-- =========================
+     Cart
+========================= -->
+
+<section class="page" id="page-cart">
+
+    <div class="section-head">
+
+        <div>
+            <h2>سلة الطلب</h2>
+            <p>راجع المنتجات قبل إرسال الطلب</p>
+        </div>
+
+    </div>
+
+    <div id="cartContainer"></div>
+
+</section>
+
+<!-- =========================
+     Orders
+========================= -->
+
+<section class="page" id="page-orders">
+
+    <div class="section-head">
+
+        <div>
+            <h2>طلباتي</h2>
+            <p>تابع جميع طلباتك السابقة والحالية</p>
+        </div>
+
+    </div>
+
+    <div id="ordersContainer"></div>
+
+</section>
+
+<!-- =========================
+     Profile
+========================= -->
+
+<section class="page" id="page-profile">
+
+    <div id="profileContainer"></div>
+
+</section>
+
+<!-- =========================
+     Login
+========================= -->
+
+<section class="page" id="page-login">
+
+    <div class="auth-wrap">
+
+        <div class="auth-head">
+
+            <div class="auth-mark">
+                <svg id="authMarkIcon">
+                    <use href="#i-school"></use>
                 </svg>
+            </div>
 
-                <span class="cart-count" id="cartCount">
-                    0
-                </span>
+            <h2 id="authTitle">حساب الطالب</h2>
 
-            </button>
+            <p id="authDescription">
+                سجّل الدخول للوصول إلى المقصف وطلباتك
+            </p>
 
         </div>
 
-    </header>
+        <div class="card">
 
+            <div class="auth-tabs">
 
-    <!-- =========================
-         Home
-    ========================= -->
+                <button class="auth-tab active" id="loginTab">
+                    تسجيل الدخول
+                </button>
 
-    <section class="page active" id="page-home">
-
-        <div class="hero">
-
-            <div class="hero-content">
-
-                <div class="hero-label">
-                    <span></span>
-                    المقصف المدرسي الإلكتروني
-                </div>
-
-                <h1>
-                    مرحباً بك في مقصف
-                    ثانوية الشيخ عبدالعزيز بن باز
-                </h1>
-
-                <p>
-                    اطلب وجبتك ومشروبك بسهولة، وتابع حالة طلبك
-                    حتى يصبح جاهزاً للاستلام.
-                </p>
-
-                <div class="hero-actions">
-
-                    <button class="btn btn-primary" data-page="store">
-                        <svg><use href="#i-store"></use></svg>
-                        تصفح المقصف
-                    </button>
-
-                    <button class="btn btn-outline" data-page="orders">
-                        <svg><use href="#i-orders"></use></svg>
-                        متابعة الطلبات
-                    </button>
-
-                </div>
+                <button class="auth-tab" id="registerTab">
+                    حساب جديد
+                </button>
 
             </div>
 
+            <!-- Login -->
 
-            <div class="hero-card">
+            <form id="loginForm">
 
-                <div class="hero-card-top">
-                    حالة النظام
+                <div class="form-group">
+
+                    <label>جوال الطالب</label>
+
+                    <input
+                        type="tel"
+                        id="loginPhone"
+                        inputmode="numeric"
+                        autocomplete="tel"
+                        placeholder="05xxxxxxxx"
+                    >
+
+                    <div class="phone-hint">
+                        يمكنك كتابة الرقم بـ 05 أو 5 أو 966
+                    </div>
+
                 </div>
 
-                <div class="hero-card-number">
-                    يعمل
+                <div class="form-group">
+
+                    <label>كلمة المرور</label>
+
+                    <input
+                        type="password"
+                        id="loginPassword"
+                        autocomplete="current-password"
+                        placeholder="أدخل كلمة المرور"
+                    >
+
                 </div>
 
-                <div class="hero-card-note">
-                    النظام الإلكتروني للمقصف متاح حالياً
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <div class="section-head">
-
-            <div>
-                <h2>الأكثر طلباً</h2>
-                <p>منتجات مختارة من المقصف المدرسي</p>
-            </div>
-
-            <button class="link-btn" data-page="store">
-                عرض جميع المنتجات
-            </button>
-
-        </div>
-
-
-        <div class="products-grid" id="homeProducts"></div>
-
-    </section>
-
-
-    <!-- =========================
-         Store
-    ========================= -->
-
-    <section class="page" id="page-store">
-
-        <div class="section-head">
-
-            <div>
-                <h2>المقصف المدرسي</h2>
-                <p>
-                    اختر المنتجات وأضفها إلى سلة الطلب
-                </p>
-            </div>
-
-            <div class="search-box">
-
-                <svg>
-                    <use href="#i-search"></use>
-                </svg>
-
-                <input
-                    type="search"
-                    id="productSearch"
-                    placeholder="ابحث عن منتج..."
+                <button
+                    class="btn btn-green"
+                    style="width:100%"
+                    type="submit"
                 >
+                    <svg><use href="#i-login"></use></svg>
+                    تسجيل الدخول
+                </button>
 
-            </div>
+            </form>
 
-        </div>
+            <!-- Register -->
 
+            <form id="registerForm" style="display:none">
 
-        <div class="categories" id="categories"></div>
+                <div class="form-grid">
 
-        <div style="height:18px"></div>
+                    <div class="form-group full">
 
-        <div class="products-grid" id="productsGrid"></div>
+                        <label>اسم الطالب</label>
 
-    </section>
+                        <input
+                            type="text"
+                            id="registerName"
+                            placeholder="الاسم الثلاثي"
+                        >
 
-
-    <!-- =========================
-         Cart
-    ========================= -->
-
-    <section class="page" id="page-cart">
-
-        <div class="section-head">
-
-            <div>
-                <h2>سلة الطلب</h2>
-                <p>راجع المنتجات قبل إرسال الطلب</p>
-            </div>
-
-        </div>
-
-        <div id="cartContainer"></div>
-
-    </section>
-
-
-    <!-- =========================
-         Orders
-    ========================= -->
-
-    <section class="page" id="page-orders">
-
-        <div class="section-head">
-
-            <div>
-                <h2>طلباتي</h2>
-                <p>تابع جميع طلباتك السابقة والحالية</p>
-            </div>
-
-        </div>
-
-        <div id="ordersContainer"></div>
-
-    </section>
-
-
-    <!-- =========================
-         Profile
-    ========================= -->
-
-    <section class="page" id="page-profile">
-
-        <div id="profileContainer"></div>
-
-    </section>
-
-
-    <!-- =========================
-         Login
-    ========================= -->
-
-    <section class="page" id="page-login">
-
-        <div class="auth-wrap">
-
-            <div class="auth-head">
-
-                <div class="auth-mark">
-                    <svg><use href="#i-school"></use></svg>
-                </div>
-
-                <h2>حساب الطالب</h2>
-
-                <p>
-                    سجّل الدخول للوصول إلى المقصف وطلباتك
-                </p>
-
-            </div>
-
-
-            <div class="card">
-
-                <div class="auth-tabs">
-
-                    <button
-                        class="auth-tab active"
-                        id="loginTab"
-                    >
-                        تسجيل الدخول
-                    </button>
-
-                    <button
-                        class="auth-tab"
-                        id="registerTab"
-                    >
-                        حساب جديد
-                    </button>
-
-                </div>
-
-
-                <!-- Login -->
-
-                <form id="loginForm">
+                    </div>
 
                     <div class="form-group">
 
-                        <label>
-                            جوال الطالب
-                        </label>
+                        <label>جوال الطالب</label>
 
                         <input
                             type="tel"
-                            id="loginPhone"
+                            id="registerPhone"
                             inputmode="numeric"
                             autocomplete="tel"
                             placeholder="05xxxxxxxx"
                         >
 
                         <div class="phone-hint">
-                            يمكنك كتابة الرقم بـ 05 أو 5 أو 966
+                            مثال: 0501234567 أو 501234567
                         </div>
 
                     </div>
 
-
                     <div class="form-group">
 
-                        <label>
-                            كلمة المرور
-                        </label>
+                        <label>جوال ولي الأمر</label>
 
                         <input
-                            type="password"
-                            id="loginPassword"
-                            autocomplete="current-password"
-                            placeholder="أدخل كلمة المرور"
+                            type="tel"
+                            id="registerParentPhone"
+                            inputmode="numeric"
+                            placeholder="05xxxxxxxx"
                         >
 
                     </div>
 
+                    <div class="form-group">
 
-                    <button
-                        class="btn btn-green"
-                        style="width:100%"
-                        type="submit"
-                    >
-                        <svg><use href="#i-login"></use></svg>
-                        تسجيل الدخول
-                    </button>
+                        <label>المرحلة</label>
 
-                </form>
+                        <select id="registerStage">
 
+                            <option value="">اختر المرحلة</option>
+                            <option>أول ثانوي</option>
+                            <option>ثاني ثانوي</option>
+                            <option>ثالث ثانوي</option>
 
-                <!-- Register -->
-
-                <form id="registerForm" style="display:none">
-
-                    <div class="form-grid">
-
-                        <div class="form-group full">
-
-                            <label>
-                                اسم الطالب
-                            </label>
-
-                            <input
-                                type="text"
-                                id="registerName"
-                                placeholder="الاسم الثلاثي"
-                            >
-
-                        </div>
-
-
-                        <div class="form-group">
-
-                            <label>
-                                جوال الطالب
-                            </label>
-
-                            <input
-                                type="tel"
-                                id="registerPhone"
-                                inputmode="numeric"
-                                autocomplete="tel"
-                                placeholder="05xxxxxxxx"
-                            >
-
-                            <div class="phone-hint">
-                                مثال: 0501234567 أو 501234567
-                            </div>
-
-                        </div>
-
-
-                        <div class="form-group">
-
-                            <label>
-                                جوال ولي الأمر
-                            </label>
-
-                            <input
-                                type="tel"
-                                id="registerParentPhone"
-                                inputmode="numeric"
-                                placeholder="05xxxxxxxx"
-                            >
-
-                        </div>
-
-
-                        <div class="form-group">
-
-                            <label>
-                                المرحلة
-                            </label>
-
-                            <select id="registerStage">
-
-                                <option value="">
-                                    اختر المرحلة
-                                </option>
-
-                                <option>
-                                    أول ثانوي
-                                </option>
-
-                                <option>
-                                    ثاني ثانوي
-                                </option>
-
-                                <option>
-                                    ثالث ثانوي
-                                </option>
-
-                            </select>
-
-                        </div>
-
-
-                        <div class="form-group">
-
-                            <label>
-                                الفصل
-                            </label>
-
-                            <input
-                                type="text"
-                                id="registerClass"
-                                placeholder="مثال: 1/1"
-                            >
-
-                        </div>
-
-
-                        <div class="form-group">
-
-                            <label>
-                                كلمة المرور
-                            </label>
-
-                            <input
-                                type="password"
-                                id="registerPassword"
-                                placeholder="4 أحرف أو أرقام على الأقل"
-                            >
-
-                        </div>
-
-
-                        <div class="form-group">
-
-                            <label>
-                                تأكيد كلمة المرور
-                            </label>
-
-                            <input
-                                type="password"
-                                id="registerConfirm"
-                                placeholder="أعد كتابة كلمة المرور"
-                            >
-
-                        </div>
+                        </select>
 
                     </div>
 
+                    <div class="form-group">
 
-                    <button
-                        class="btn btn-green"
-                        style="width:100%"
-                        type="submit"
-                    >
-                        <svg><use href="#i-check"></use></svg>
-                        إنشاء الحساب
-                    </button>
+                        <label>الفصل</label>
 
-                </form>
+                        <input
+                            type="text"
+                            id="registerClass"
+                            placeholder="مثال: 1/1"
+                        >
 
-            </div>
+                    </div>
+
+                    <div class="form-group">
+
+                        <label>كلمة المرور</label>
+
+                        <input
+                            type="password"
+                            id="registerPassword"
+                            placeholder="4 أحرف أو أرقام على الأقل"
+                        >
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label>تأكيد كلمة المرور</label>
+
+                        <input
+                            type="password"
+                            id="registerConfirm"
+                            placeholder="أعد كتابة كلمة المرور"
+                        >
+
+                    </div>
+
+                </div>
+
+                <button
+                    class="btn btn-green"
+                    style="width:100%"
+                    type="submit"
+                >
+                    <svg><use href="#i-check"></use></svg>
+                    إنشاء الحساب
+                </button>
+
+            </form>
 
         </div>
 
-    </section>
+    </div>
+
+</section>
 
 </main>
-
 
 <!-- =========================
      Mobile Navigation
@@ -2204,37 +2048,26 @@ a{
 
 <nav class="mobile-nav">
 
-    <button
-        class="active"
-        data-page="home"
-    >
+    <button class="active" data-page="home">
         <svg><use href="#i-home"></use></svg>
         <span>الرئيسية</span>
     </button>
 
-
     <button data-page="cart">
-
         <svg><use href="#i-cart"></use></svg>
-
         <span>السلة</span>
-
     </button>
 
-
-    <button data-page="login">
-
+    <!-- يتحول تلقائياً إلى حسابي -->
+    <button data-page="login" id="mobileAccountBtn">
         <svg><use href="#i-login"></use></svg>
-
         <span>تسجيل الدخول</span>
-
     </button>
 
 </nav>
 
-
 <!-- =========================
-     Mada Modal
+     Mada
 ========================= -->
 
 <div class="modal" id="madaModal">
@@ -2243,19 +2076,13 @@ a{
 
         <div class="modal-head">
 
-            <h3>
-                الدفع عبر مدى
-            </h3>
+            <h3>الدفع عبر مدى</h3>
 
-            <button
-                class="close-modal"
-                id="closeMada"
-            >
+            <button class="close-modal" id="closeMada">
                 <svg><use href="#i-close"></use></svg>
             </button>
 
         </div>
-
 
         <div class="mada-box">
 
@@ -2267,6 +2094,7 @@ a{
 
                 سيتم توجيه عملية الدفع إلى بوابة الدفع
                 المعتمدة عند ربط النظام بمزود الدفع.
+
                 <br><br>
 
                 هذه الواجهة حالياً للعرض والتجهيز فقط،
@@ -2275,7 +2103,6 @@ a{
             </div>
 
         </div>
-
 
         <div style="height:15px"></div>
 
@@ -2291,18 +2118,16 @@ a{
 
 </div>
 
-
 <!-- =========================
      Toast
 ========================= -->
 
 <div class="toast-container" id="toastContainer"></div>
 
-
 <script>
 
 /* =====================================================
-   رابط Google Apps Script
+   Google Apps Script
 ===================================================== */
 
 const GOOGLE_SCRIPT_URL =
@@ -2326,7 +2151,7 @@ const STORAGE_ORDERS =
 
 
 /* =====================================================
-   بيانات المنتجات الاحتياطية
+   المنتجات الاحتياطية
 ===================================================== */
 
 const DEFAULT_PRODUCTS = [
@@ -2458,7 +2283,7 @@ let paymentMethod = "رصيد الطالب";
 
 
 /* =====================================================
-   عناصر DOM
+   عناصر الصفحة
 ===================================================== */
 
 const loadingScreen =
@@ -2500,7 +2325,16 @@ document.addEventListener(
 "DOMContentLoaded",
 async function(){
 
+    /*
+       أول شيء:
+       استرجاع الحساب المحفوظ
+    */
+
     loadStudent();
+
+    /*
+       استرجاع السلة
+    */
 
     loadCart();
 
@@ -2515,6 +2349,8 @@ async function(){
     bindProductEvents();
 
     await loadProducts();
+
+    reconcileCart();
 
     renderCategories();
 
@@ -2564,7 +2400,6 @@ async function apiRequest(data){
             }
         );
 
-
         if(!response.ok){
 
             throw new Error(
@@ -2573,10 +2408,8 @@ async function apiRequest(data){
 
         }
 
-
         const result =
         await response.json();
-
 
         return result;
 
@@ -2602,15 +2435,12 @@ async function apiRequest(data){
 
 async function loadProducts(){
 
-    products =
-    [...DEFAULT_PRODUCTS];
-
+    products = [...DEFAULT_PRODUCTS];
 
     const result =
     await apiRequest({
         action:"products"
     });
-
 
     if(
         result &&
@@ -2655,7 +2485,7 @@ async function loadProducts(){
 
 
 /* =====================================================
-   SVG المنتج
+   أيقونة المنتج
 ===================================================== */
 
 function productIcon(category){
@@ -2676,7 +2506,6 @@ function productIcon(category){
 
     }
 
-
     if(category==="فواكه"){
 
         return `
@@ -2693,7 +2522,6 @@ function productIcon(category){
         </svg>`;
 
     }
-
 
     if(category==="مخبوزات"){
 
@@ -2712,7 +2540,6 @@ function productIcon(category){
 
     }
 
-
     return `
     <svg viewBox="0 0 24 24">
         <rect x="4" y="6" width="16" height="13" rx="2"
@@ -2730,21 +2557,17 @@ function productIcon(category){
 
 
 /* =====================================================
-   تصنيفات
+   التصنيفات
 ===================================================== */
 
 function renderCategories(){
 
-    const cats =
-    [
+    const cats = [
         "الكل",
         ...new Set(
-            products.map(
-                p=>p.category
-            )
+            products.map(p=>p.category)
         )
     ];
-
 
     categories.innerHTML =
     cats.map(function(cat){
@@ -2775,7 +2598,7 @@ function(e){
         "[data-category]"
     );
 
-    if(!btn) return;
+    if(!btn)return;
 
     selectedCategory =
     btn.dataset.category;
@@ -2788,7 +2611,7 @@ function(e){
 
 
 /* =====================================================
-   فلترة المنتجات
+   المنتجات المفلترة
 ===================================================== */
 
 function getFilteredProducts(){
@@ -2798,29 +2621,22 @@ function getFilteredProducts(){
         document.getElementById(
             "productSearch"
         )?.value || ""
-    ).trim().toLowerCase();
-
+    )
+    .trim()
+    .toLowerCase();
 
     return products.filter(function(product){
 
         const categoryMatch =
         selectedCategory==="الكل" ||
-        product.category===
-        selectedCategory;
-
+        product.category===selectedCategory;
 
         const searchMatch =
         !search ||
-        product.name
-            .toLowerCase()
-            .includes(search) ||
-        product.category
-            .toLowerCase()
-            .includes(search);
+        product.name.toLowerCase().includes(search) ||
+        product.category.toLowerCase().includes(search);
 
-
-        return categoryMatch &&
-        searchMatch;
+        return categoryMatch && searchMatch;
 
     });
 
@@ -2836,36 +2652,35 @@ function renderProducts(){
     const list =
     getFilteredProducts();
 
-
     if(!list.length){
 
         productsGrid.innerHTML = `
-        <div class="empty"
-             style="grid-column:1/-1">
+        <div class="empty" style="grid-column:1/-1">
+
             <div class="empty-icon">
-                <svg>
-                    <use href="#i-search"></use>
-                </svg>
+                <svg><use href="#i-search"></use></svg>
             </div>
+
             <h3>لا توجد منتجات</h3>
-            <p>لم نجد منتجاً مطابقاً للبحث</p>
+
+            <p>
+                لم نجد منتجاً مطابقاً للبحث
+            </p>
+
         </div>`;
 
         return;
 
     }
 
-
     productsGrid.innerHTML =
-    list.map(
-        productCard
-    ).join("");
+    list.map(productCard).join("");
 
 }
 
 
 /* =====================================================
-   المنتجات الرئيسية
+   منتجات الرئيسية
 ===================================================== */
 
 function renderHomeProducts(){
@@ -2873,11 +2688,8 @@ function renderHomeProducts(){
     const list =
     products.slice(0,4);
 
-
     homeProducts.innerHTML =
-    list.map(
-        productCard
-    ).join("");
+    list.map(productCard).join("");
 
 }
 
@@ -2890,29 +2702,22 @@ function productCard(product){
 
     const unavailable =
     product.status &&
-    product.status !== "متوفر";
-
+    product.status!=="متوفر";
 
     return `
 
     <article class="product-card">
 
         <div class="product-image">
-            ${productIcon(
-                product.category
-            )}
+            ${productIcon(product.category)}
         </div>
 
         <div class="product-category">
-            ${escapeHtml(
-                product.category
-            )}
+            ${escapeHtml(product.category)}
         </div>
 
         <div class="product-name">
-            ${escapeHtml(
-                product.name
-            )}
+            ${escapeHtml(product.name)}
         </div>
 
         <div class="product-bottom">
@@ -2929,26 +2734,17 @@ function productCard(product){
                 <button
                     class="add-btn"
                     disabled
-                    style="
-                        opacity:.45;
-                        cursor:not-allowed
-                    "
-                >
-                    —
-                </button>
+                    style="opacity:.45;cursor:not-allowed"
+                >—</button>
                 `
                 :
                 `
                 <button
                     class="add-btn"
-                    data-product-id="${escapeHtml(
-                        String(product.id)
-                    )}"
+                    data-product-id="${escapeHtml(String(product.id))}"
                     title="إضافة للسلة"
                 >
-                    <svg>
-                        <use href="#i-plus"></use>
-                    </svg>
+                    <svg><use href="#i-plus"></use></svg>
                 </button>
                 `
             }
@@ -2970,11 +2766,8 @@ document
 .getElementById("productSearch")
 .addEventListener(
 "input",
-function(){
-
-    renderProducts();
-
-});
+renderProducts
+);
 
 
 /* =====================================================
@@ -2986,13 +2779,10 @@ function addToCart(productId){
     const id =
     String(productId);
 
-
     const product =
     products.find(
-        p =>
-        String(p.id)===id
+        p=>String(p.id)===id
     );
-
 
     if(!product){
 
@@ -3005,10 +2795,9 @@ function addToCart(productId){
 
     }
 
-
     if(
         product.status &&
-        product.status !== "متوفر"
+        product.status!=="متوفر"
     ){
 
         showToast(
@@ -3020,13 +2809,10 @@ function addToCart(productId){
 
     }
 
-
     const existing =
     cart.find(
-        item =>
-        String(item.id)===id
+        item=>String(item.id)===id
     );
-
 
     if(existing){
 
@@ -3050,7 +2836,6 @@ function addToCart(productId){
 
     }
 
-
     saveCart();
 
     renderCart();
@@ -3066,41 +2851,31 @@ function addToCart(productId){
 
 
 /* =====================================================
-   تغيير الكمية
+   كمية السلة
 ===================================================== */
 
-function changeQuantity(
-    productId,
-    amount
-){
+function changeQuantity(productId,amount){
 
     const id =
     String(productId);
 
-
     const item =
     cart.find(
-        x =>
-        String(x.id)===id
+        x=>String(x.id)===id
     );
 
-
-    if(!item) return;
-
+    if(!item)return;
 
     item.quantity += amount;
-
 
     if(item.quantity<=0){
 
         cart =
         cart.filter(
-            x =>
-            String(x.id)!==id
+            x=>String(x.id)!==id
         );
 
     }
-
 
     saveCart();
 
@@ -3111,22 +2886,15 @@ function changeQuantity(
 }
 
 
-/* =====================================================
-   حذف المنتج
-===================================================== */
-
 function removeFromCart(productId){
 
     const id =
     String(productId);
 
-
     cart =
     cart.filter(
-        item =>
-        String(item.id)!==id
+        item=>String(item.id)!==id
     );
-
 
     saveCart();
 
@@ -3152,7 +2920,7 @@ function bindProductEvents(){
                 "[data-product-id]"
             );
 
-            if(!btn) return;
+            if(!btn)return;
 
             addToCart(
                 btn.dataset.productId
@@ -3165,7 +2933,7 @@ function bindProductEvents(){
 
 
 /* =====================================================
-   Cart Events
+   أحداث السلة
 ===================================================== */
 
 function bindCartEvents(){
@@ -3174,38 +2942,29 @@ function bindCartEvents(){
         "click",
         function(e){
 
-            const quantityBtn =
+            const btn =
             e.target.closest(
                 "[data-cart-action]"
             );
 
-
-            if(!quantityBtn) return;
-
+            if(!btn)return;
 
             const action =
-            quantityBtn.dataset.cartAction;
+            btn.dataset.cartAction;
 
             const id =
-            quantityBtn.dataset.id;
-
+            btn.dataset.id;
 
             if(action==="plus"){
-
                 changeQuantity(id,1);
-
             }
 
             if(action==="minus"){
-
                 changeQuantity(id,-1);
-
             }
 
             if(action==="remove"){
-
                 removeFromCart(id);
-
             }
 
         }
@@ -3227,19 +2986,13 @@ function loadCart(){
             STORAGE_CART
         );
 
-
         cart =
         saved
-        ?
-        JSON.parse(saved)
-        :
-        [];
-
+        ?JSON.parse(saved)
+        :[];
 
         if(!Array.isArray(cart)){
-
             cart=[];
-
         }
 
     }catch{
@@ -3250,10 +3003,6 @@ function loadCart(){
 
 }
 
-
-/* =====================================================
-   حفظ السلة
-===================================================== */
 
 function saveCart(){
 
@@ -3277,18 +3026,12 @@ function reconcileCart(){
 
         const product =
         products.find(
-            p =>
-            String(p.id)===
-            String(item.id)
+            p=>String(p.id)===String(item.id)
         );
 
-
         if(!product){
-
             return null;
-
         }
-
 
         return {
 
@@ -3298,11 +3041,9 @@ function reconcileCart(){
 
             category:product.category,
 
-            price:
-            Number(product.price)||0,
+            price:Number(product.price)||0,
 
-            quantity:
-            Math.max(
+            quantity:Math.max(
                 1,
                 Number(item.quantity)||1
             )
@@ -3311,7 +3052,6 @@ function reconcileCart(){
 
     })
     .filter(Boolean);
-
 
     saveCart();
 
@@ -3340,24 +3080,15 @@ function cartTotals(){
         0
     );
 
-
     const tax =
     Number(
-        (
-            subtotal *
-            VAT_RATE
-        ).toFixed(2)
+        (subtotal*VAT_RATE).toFixed(2)
     );
-
 
     const total =
     Number(
-        (
-            subtotal +
-            tax
-        ).toFixed(2)
+        (subtotal+tax).toFixed(2)
     );
-
 
     return {
         subtotal,
@@ -3378,21 +3109,17 @@ function renderCart(){
 
     updateCartCount();
 
-
     if(!cart.length){
 
         cartContainer.innerHTML = `
+
         <div class="empty">
 
             <div class="empty-icon">
-                <svg>
-                    <use href="#i-cart"></use>
-                </svg>
+                <svg><use href="#i-cart"></use></svg>
             </div>
 
-            <h3>
-                السلة فارغة
-            </h3>
+            <h3>السلة فارغة</h3>
 
             <p>
                 أضف المنتجات التي ترغب بطلبها من المقصف
@@ -3413,10 +3140,8 @@ function renderCart(){
 
     }
 
-
     const totals =
     cartTotals();
-
 
     const itemsHtml =
     cart.map(function(item){
@@ -3426,20 +3151,13 @@ function renderCart(){
         <div class="cart-item">
 
             <div class="cart-item-icon">
-
-                ${productIcon(
-                    item.category
-                )}
-
+                ${productIcon(item.category)}
             </div>
-
 
             <div class="cart-item-info">
 
                 <strong>
-                    ${escapeHtml(
-                        item.name
-                    )}
+                    ${escapeHtml(item.name)}
                 </strong>
 
                 <small>
@@ -3449,54 +3167,35 @@ function renderCart(){
 
             </div>
 
-
             <div class="quantity">
 
                 <button
                     data-cart-action="plus"
-                    data-id="${escapeHtml(
-                        String(item.id)
-                    )}"
-                >
-                    +
-                </button>
+                    data-id="${escapeHtml(String(item.id))}"
+                >+</button>
 
-                <span>
-                    ${item.quantity}
-                </span>
+                <span>${item.quantity}</span>
 
                 <button
                     data-cart-action="minus"
-                    data-id="${escapeHtml(
-                        String(item.id)
-                    )}"
-                >
-                    −
-                </button>
+                    data-id="${escapeHtml(String(item.id))}"
+                >−</button>
 
             </div>
 
-
             <strong>
                 ${formatPrice(
-                    item.price *
-                    item.quantity
+                    item.price*item.quantity
                 )}
                 ريال
             </strong>
 
-
             <button
                 class="remove-item"
                 data-cart-action="remove"
-                data-id="${escapeHtml(
-                    String(item.id)
-                )}"
-                title="حذف"
+                data-id="${escapeHtml(String(item.id))}"
             >
-                <svg>
-                    <use href="#i-trash"></use>
-                </svg>
+                <svg><use href="#i-trash"></use></svg>
             </button>
 
         </div>
@@ -3505,63 +3204,51 @@ function renderCart(){
 
     }).join("");
 
-
     cartContainer.innerHTML = `
 
     <div class="cart-layout">
 
         <div class="cart-list">
-
             ${itemsHtml}
-
         </div>
-
 
         <div class="card summary">
 
-            <h3>
-                ملخص الطلب
-            </h3>
+            <h3>ملخص الطلب</h3>
 
             <div class="summary-row">
                 <span>المجموع</span>
                 <strong>
-                    ${formatPrice(
-                        totals.subtotal
-                    )} ريال
+                    ${formatPrice(totals.subtotal)}
+                    ريال
                 </strong>
             </div>
 
             <div class="summary-row">
                 <span>الضريبة 15%</span>
                 <strong>
-                    ${formatPrice(
-                        totals.tax
-                    )} ريال
+                    ${formatPrice(totals.tax)}
+                    ريال
                 </strong>
             </div>
 
             <div class="summary-row total">
                 <span>الإجمالي</span>
                 <strong>
-                    ${formatPrice(
-                        totals.total
-                    )} ريال
+                    ${formatPrice(totals.total)}
+                    ريال
                 </strong>
             </div>
-
 
             <div class="payment-title">
                 طريقة الدفع
             </div>
 
-
             <div class="payment-options">
 
                 <div
                     class="payment-option ${
-                        paymentMethod===
-                        "رصيد الطالب"
+                        paymentMethod==="رصيد الطالب"
                         ?"active":""
                     }"
                     data-payment="رصيد الطالب"
@@ -3570,24 +3257,15 @@ function renderCart(){
                     <div class="payment-radio"></div>
 
                     <div class="payment-info">
-
-                        <strong>
-                            رصيد الطالب
-                        </strong>
-
-                        <span>
-                            الدفع من الرصيد المدرسي
-                        </span>
-
+                        <strong>رصيد الطالب</strong>
+                        <span>الدفع من الرصيد المدرسي</span>
                     </div>
 
                 </div>
 
-
                 <div
                     class="payment-option ${
-                        paymentMethod===
-                        "مدى"
+                        paymentMethod==="مدى"
                         ?"active":""
                     }"
                     data-payment="مدى"
@@ -3596,47 +3274,32 @@ function renderCart(){
                     <div class="payment-radio"></div>
 
                     <div class="payment-info">
-
-                        <strong>
-                            مدى
-                        </strong>
-
-                        <span>
-                            الدفع بالبطاقة البنكية
-                        </span>
-
+                        <strong>مدى</strong>
+                        <span>الدفع بالبطاقة البنكية</span>
                     </div>
 
                 </div>
 
             </div>
 
-
             <div style="height:15px"></div>
-
 
             <button
                 class="btn btn-green"
                 id="submitOrderBtn"
                 style="width:100%"
             >
-                <svg>
-                    <use href="#i-check"></use>
-                </svg>
+                <svg><use href="#i-check"></use></svg>
                 تأكيد الطلب
             </button>
 
         </div>
 
     </div>
-
     `;
 
-
     document
-    .querySelectorAll(
-        "[data-payment]"
-    )
+    .querySelectorAll("[data-payment]")
     .forEach(function(option){
 
         option.addEventListener(
@@ -3653,12 +3316,10 @@ function renderCart(){
 
     });
 
-
     const submitBtn =
     document.getElementById(
         "submitOrderBtn"
     );
-
 
     if(submitBtn){
 
@@ -3668,24 +3329,6 @@ function renderCart(){
         );
 
     }
-
-
-    document
-    .querySelectorAll(
-        '[data-page="store"]'
-    )
-    .forEach(function(btn){
-
-        btn.addEventListener(
-            "click",
-            function(){
-
-                navigate("store");
-
-            }
-        );
-
-    });
 
 }
 
@@ -3698,17 +3341,10 @@ function updateCartCount(){
 
     const count =
     cart.reduce(
-        (
-            total,
-            item
-        ) =>
-        total +
-        (
-            Number(item.quantity)||0
-        ),
+        (total,item)=>
+        total+(Number(item.quantity)||0),
         0
     );
-
 
     cartCount.textContent =
     count;
@@ -3717,7 +3353,7 @@ function updateCartCount(){
 
 
 /* =====================================================
-   إنشاء الطلب
+   إرسال الطلب
 ===================================================== */
 
 async function submitOrder(){
@@ -3735,7 +3371,6 @@ async function submitOrder(){
 
     }
 
-
     if(!cart.length){
 
         showToast(
@@ -3747,28 +3382,23 @@ async function submitOrder(){
 
     }
 
-
     if(paymentMethod==="مدى"){
 
         document
-        .getElementById(
-            "madaModal"
-        )
+        .getElementById("madaModal")
         .classList.add("show");
 
         return;
 
     }
 
-
     await createOrder();
-
 
 }
 
 
 /* =====================================================
-   تأكيد مدى
+   مدى
 ===================================================== */
 
 document
@@ -3778,9 +3408,7 @@ document
 async function(){
 
     document
-    .getElementById(
-        "madaModal"
-    )
+    .getElementById("madaModal")
     .classList.remove("show");
 
     await createOrder();
@@ -3795,16 +3423,14 @@ document
 function(){
 
     document
-    .getElementById(
-        "madaModal"
-    )
+    .getElementById("madaModal")
     .classList.remove("show");
 
 });
 
 
 /* =====================================================
-   إنشاء الطلب فعلياً
+   إنشاء الطلب
 ===================================================== */
 
 async function createOrder(){
@@ -3814,7 +3440,6 @@ async function createOrder(){
         "submitOrderBtn"
     );
 
-
     if(btn){
 
         btn.disabled=true;
@@ -3823,11 +3448,6 @@ async function createOrder(){
         "جاري إرسال الطلب...";
 
     }
-
-
-    const totals =
-    cartTotals();
-
 
     const result =
     await apiRequest({
@@ -3863,15 +3483,12 @@ async function createOrder(){
 
     });
 
-
     if(result.success){
 
         const order =
         result.order;
 
-
         saveLocalOrder(order);
-
 
         cart=[];
 
@@ -3879,12 +3496,10 @@ async function createOrder(){
 
         updateCartCount();
 
-
         showToast(
             "تم إرسال الطلب بنجاح",
             "success"
         );
-
 
         navigate("orders");
 
@@ -3900,14 +3515,13 @@ async function createOrder(){
 
     }
 
-
     renderCart();
 
 }
 
 
 /* =====================================================
-   تخزين الطلب محلياً
+   حفظ الطلب محلياً
 ===================================================== */
 
 function saveLocalOrder(order){
@@ -3921,9 +3535,7 @@ function saveLocalOrder(order){
             ) || "[]"
         );
 
-
         saved.unshift(order);
-
 
         localStorage.setItem(
             STORAGE_ORDERS,
@@ -3938,7 +3550,7 @@ function saveLocalOrder(order){
 
 
 /* =====================================================
-   تحميل الطالب
+   تحميل الحساب المحفوظ
 ===================================================== */
 
 function loadStudent(){
@@ -3950,17 +3562,43 @@ function loadStudent(){
             STORAGE_STUDENT
         );
 
+        if(saved){
 
-        currentStudent =
-        saved
-        ?
-        JSON.parse(saved)
-        :
-        null;
+            const student =
+            JSON.parse(saved);
+
+            if(
+                student &&
+                typeof student==="object" &&
+                (
+                    student.studentId ||
+                    student.id ||
+                    student.phone
+                )
+            ){
+
+                currentStudent =
+                student;
+
+            }else{
+
+                currentStudent=null;
+
+            }
+
+        }else{
+
+            currentStudent=null;
+
+        }
 
     }catch{
 
         currentStudent=null;
+
+        localStorage.removeItem(
+            STORAGE_STUDENT
+        );
 
     }
 
@@ -3968,18 +3606,68 @@ function loadStudent(){
 
 
 /* =====================================================
-   حفظ الطالب
+   حفظ الحساب
 ===================================================== */
 
 function saveStudent(student){
 
-    currentStudent =
-    student;
+    if(!student){
+        return;
+    }
 
+    /*
+       تنظيف بيانات الحساب قبل الحفظ
+       وعدم حفظ كلمة المرور محلياً
+    */
+
+    const safeStudent = {
+
+        studentId:
+        student.studentId ||
+        student.id ||
+        "",
+
+        id:
+        student.id ||
+        student.studentId ||
+        "",
+
+        name:
+        student.name ||
+        "",
+
+        phone:
+        normalizePhone(
+            student.phone || ""
+        ),
+
+        parentPhone:
+        normalizePhone(
+            student.parentPhone || ""
+        ),
+
+        stage:
+        student.stage ||
+        "",
+
+        className:
+        student.className ||
+        "",
+
+        status:
+        student.status ||
+        "نشط"
+
+    };
+
+    currentStudent =
+    safeStudent;
 
     localStorage.setItem(
         STORAGE_STUDENT,
-        JSON.stringify(student)
+        JSON.stringify(
+            safeStudent
+        )
     );
 
 }
@@ -3998,7 +3686,6 @@ function bindForms(){
         login
     );
 
-
     document
     .getElementById("registerForm")
     .addEventListener(
@@ -4006,27 +3693,21 @@ function bindForms(){
         register
     );
 
-
     document
     .getElementById("loginTab")
     .addEventListener(
         "click",
         function(){
-
             showAuth("login");
-
         }
     );
-
 
     document
     .getElementById("registerTab")
     .addEventListener(
         "click",
         function(){
-
             showAuth("register");
-
         }
     );
 
@@ -4034,7 +3715,7 @@ function bindForms(){
 
 
 /* =====================================================
-   تبديل تسجيل / إنشاء
+   إظهار نموذج الدخول
 ===================================================== */
 
 function showAuth(type){
@@ -4042,41 +3723,29 @@ function showAuth(type){
     const login =
     type==="login";
 
-
     document
-    .getElementById(
-        "loginForm"
-    )
+    .getElementById("loginForm")
     .style.display =
     login
-    ? "block"
-    : "none";
-
+    ?"block"
+    :"none";
 
     document
-    .getElementById(
-        "registerForm"
-    )
+    .getElementById("registerForm")
     .style.display =
     login
-    ? "none"
-    : "block";
-
+    ?"none"
+    :"block";
 
     document
-    .getElementById(
-        "loginTab"
-    )
+    .getElementById("loginTab")
     .classList.toggle(
         "active",
         login
     );
 
-
     document
-    .getElementById(
-        "registerTab"
-    )
+    .getElementById("registerTab")
     .classList.toggle(
         "active",
         !login
@@ -4086,50 +3755,64 @@ function showAuth(type){
 
 
 /* =====================================================
-   تطبيع رقم الجوال في الواجهة
+   تطبيع الجوال
 ===================================================== */
 
 function normalizePhone(phone){
 
     let value =
-    String(phone || "")
+    String(phone||"")
     .trim()
     .replace(/\s+/g,"")
     .replace(/-/g,"")
     .replace(/\(/g,"")
     .replace(/\)/g,"");
 
+    /*
+       +9665xxxxxxxx
+    */
 
-    if(value.startsWith("+")){
+    if(value.startsWith("+966")){
 
         value =
-        value.substring(1);
+        "0" +
+        value.substring(4);
 
     }
 
+    /*
+       9665xxxxxxxx
+    */
 
-    if(value.startsWith("966")){
+    else if(value.startsWith("966")){
 
         value =
+        "0" +
         value.substring(3);
 
     }
 
+    /*
+       5xxxxxxxx
+    */
 
-    if(/^5\d{8}$/.test(value)){
+    else if(/^5\d{8}$/.test(value)){
 
         value =
-        "0" + value;
+        "0" +
+        value;
 
     }
 
+    /*
+       05xxxxxxxx
+    */
 
     if(/^05\d{8}$/.test(value)){
 
         return value;
 
     }
-
 
     return "";
 
@@ -4144,68 +3827,46 @@ async function register(e){
 
     e.preventDefault();
 
-
     const name =
     document
-    .getElementById(
-        "registerName"
-    )
+    .getElementById("registerName")
     .value
     .trim();
-
 
     const phone =
     normalizePhone(
         document
-        .getElementById(
-            "registerPhone"
-        )
+        .getElementById("registerPhone")
         .value
     );
-
 
     const parentPhone =
     normalizePhone(
         document
-        .getElementById(
-            "registerParentPhone"
-        )
+        .getElementById("registerParentPhone")
         .value
     );
 
-
     const stage =
     document
-    .getElementById(
-        "registerStage"
-    )
+    .getElementById("registerStage")
     .value;
-
 
     const className =
     document
-    .getElementById(
-        "registerClass"
-    )
+    .getElementById("registerClass")
     .value
     .trim();
 
-
     const password =
     document
-    .getElementById(
-        "registerPassword"
-    )
+    .getElementById("registerPassword")
     .value;
-
 
     const confirmPassword =
     document
-    .getElementById(
-        "registerConfirm"
-    )
+    .getElementById("registerConfirm")
     .value;
-
 
     if(!name){
 
@@ -4218,7 +3879,6 @@ async function register(e){
 
     }
 
-
     if(!phone){
 
         showToast(
@@ -4229,7 +3889,6 @@ async function register(e){
         return;
 
     }
-
 
     if(!parentPhone){
 
@@ -4242,7 +3901,6 @@ async function register(e){
 
     }
 
-
     if(!stage){
 
         showToast(
@@ -4253,7 +3911,6 @@ async function register(e){
         return;
 
     }
-
 
     if(!className){
 
@@ -4266,7 +3923,6 @@ async function register(e){
 
     }
 
-
     if(password.length<4){
 
         showToast(
@@ -4278,7 +3934,6 @@ async function register(e){
 
     }
 
-
     if(password!==confirmPassword){
 
         showToast(
@@ -4289,7 +3944,6 @@ async function register(e){
         return;
 
     }
-
 
     const result =
     await apiRequest({
@@ -4313,23 +3967,32 @@ async function register(e){
 
     });
 
-
     if(result.success){
+
+        /*
+           إنشاء الحساب = تسجيل دخول تلقائي
+        */
 
         saveStudent(
             result.student
         );
 
-
-        showToast(
-            "تم إنشاء الحساب بنجاح",
-            "success"
-        );
-
+        /*
+           تحديث كل أزرار الحساب
+        */
 
         updateLoginButton();
 
         renderProfile();
+
+        showToast(
+            "تم إنشاء الحساب وتسجيل دخولك بنجاح",
+            "success"
+        );
+
+        /*
+           العودة للرئيسية
+        */
 
         navigate("home");
 
@@ -4354,24 +4017,17 @@ async function login(e){
 
     e.preventDefault();
 
-
     const phone =
     normalizePhone(
         document
-        .getElementById(
-            "loginPhone"
-        )
+        .getElementById("loginPhone")
         .value
     );
 
-
     const password =
     document
-    .getElementById(
-        "loginPassword"
-    )
+    .getElementById("loginPassword")
     .value;
-
 
     if(!phone){
 
@@ -4384,7 +4040,6 @@ async function login(e){
 
     }
 
-
     if(!password){
 
         showToast(
@@ -4395,7 +4050,6 @@ async function login(e){
         return;
 
     }
-
 
     const result =
     await apiRequest({
@@ -4408,23 +4062,28 @@ async function login(e){
 
     });
 
-
     if(result.success){
+
+        /*
+           حفظ الحساب
+        */
 
         saveStudent(
             result.student
         );
 
+        /*
+           تحديث الواجهة
+        */
+
+        updateLoginButton();
+
+        renderProfile();
 
         showToast(
             "تم تسجيل الدخول بنجاح",
             "success"
         );
-
-
-        updateLoginButton();
-
-        renderProfile();
 
         navigate("home");
 
@@ -4447,23 +4106,29 @@ async function login(e){
 
 function logout(){
 
+    /*
+       حذف الحساب فقط
+       وعدم حذف السلة
+    */
+
     localStorage.removeItem(
         STORAGE_STUDENT
     );
 
-
     currentStudent=null;
 
+    /*
+       تحديث الواجهة
+    */
 
     updateLoginButton();
 
     renderProfile();
 
     showToast(
-        "تم تسجيل الخروج",
+        "تم تسجيل الخروج بنجاح",
         "success"
     );
-
 
     navigate("login");
 
@@ -4471,7 +4136,104 @@ function logout(){
 
 
 /* =====================================================
-   الملف الشخصي
+   تحديث أزرار الحساب
+===================================================== */
+
+function updateLoginButton(){
+
+    /*
+       زر الكمبيوتر
+    */
+
+    const accountMenuBtn =
+    document.getElementById(
+        "accountMenuBtn"
+    );
+
+    /*
+       زر الجوال
+    */
+
+    const mobileAccountBtn =
+    document.getElementById(
+        "mobileAccountBtn"
+    );
+
+    const buttons = [
+        accountMenuBtn,
+        mobileAccountBtn
+    ];
+
+    buttons.forEach(function(btn){
+
+        if(!btn)return;
+
+        const span =
+        btn.querySelector("span");
+
+        const use =
+        btn.querySelector("use");
+
+        if(currentStudent){
+
+            /*
+               الطالب مسجل
+               الزر يصبح حسابي
+            */
+
+            btn.dataset.page =
+            "profile";
+
+            if(span){
+
+                span.textContent =
+                "حسابي";
+
+            }
+
+            if(use){
+
+                use.setAttribute(
+                    "href",
+                    "#i-user"
+                );
+
+            }
+
+        }else{
+
+            /*
+               لا يوجد حساب
+            */
+
+            btn.dataset.page =
+            "login";
+
+            if(span){
+
+                span.textContent =
+                "تسجيل الدخول";
+
+            }
+
+            if(use){
+
+                use.setAttribute(
+                    "href",
+                    "#i-login"
+                );
+
+            }
+
+        }
+
+    });
+
+}
+
+
+/* =====================================================
+   الحساب الشخصي
 ===================================================== */
 
 function renderProfile(){
@@ -4483,9 +4245,7 @@ function renderProfile(){
         <div class="empty">
 
             <div class="empty-icon">
-                <svg>
-                    <use href="#i-user"></use>
-                </svg>
+                <svg><use href="#i-user"></use></svg>
             </div>
 
             <h3>
@@ -4513,12 +4273,10 @@ function renderProfile(){
 
     }
 
-
     const firstLetter =
     currentStudent.name
-    ? currentStudent.name.charAt(0)
-    : "ط";
-
+    ?currentStudent.name.charAt(0)
+    :"ط";
 
     profileContainer.innerHTML = `
 
@@ -4527,9 +4285,7 @@ function renderProfile(){
         <div class="profile-head">
 
             <div class="avatar">
-                ${escapeHtml(
-                    firstLetter
-                )}
+                ${escapeHtml(firstLetter)}
             </div>
 
             <div>
@@ -4555,83 +4311,57 @@ function renderProfile(){
 
         </div>
 
-
         <div class="profile-grid">
 
             <div class="info-box">
-
                 <span>جوال الطالب</span>
-
                 <strong>
                     ${escapeHtml(
-                        currentStudent.phone ||
-                        ""
+                        currentStudent.phone||""
                     )}
                 </strong>
-
             </div>
 
-
             <div class="info-box">
-
                 <span>جوال ولي الأمر</span>
-
                 <strong>
                     ${escapeHtml(
-                        currentStudent.parentPhone ||
-                        ""
+                        currentStudent.parentPhone||""
                     )}
                 </strong>
-
             </div>
 
-
             <div class="info-box">
-
                 <span>المرحلة</span>
-
                 <strong>
                     ${escapeHtml(
-                        currentStudent.stage ||
-                        ""
+                        currentStudent.stage||""
                     )}
                 </strong>
-
             </div>
 
-
             <div class="info-box">
-
                 <span>الفصل</span>
-
                 <strong>
                     ${escapeHtml(
-                        currentStudent.className ||
-                        ""
+                        currentStudent.className||""
                     )}
                 </strong>
-
             </div>
 
-
             <div class="info-box">
-
                 <span>حالة الحساب</span>
-
                 <strong>
                     ${escapeHtml(
-                        currentStudent.status ||
+                        currentStudent.status||
                         "نشط"
                     )}
                 </strong>
-
             </div>
 
         </div>
 
-
         <div style="height:18px"></div>
-
 
         <button
             class="btn btn-danger"
@@ -4644,66 +4374,12 @@ function renderProfile(){
 
     `;
 
-
     document
-    .getElementById(
-        "logoutBtn"
-    )
+    .getElementById("logoutBtn")
     ?.addEventListener(
         "click",
         logout
     );
-
-
-    document
-    .querySelectorAll(
-        '[data-page="login"]'
-    )
-    .forEach(function(btn){
-
-        btn.addEventListener(
-            "click",
-            function(){
-
-                navigate("login");
-
-            }
-        );
-
-    });
-
-}
-
-
-/* =====================================================
-   تحديث زر تسجيل الدخول
-===================================================== */
-
-function updateLoginButton(){
-
-    const buttons =
-    document.querySelectorAll(
-        '[data-page="login"]'
-    );
-
-
-    buttons.forEach(function(btn){
-
-        const span =
-        btn.querySelector("span");
-
-
-        if(
-            currentStudent &&
-            span
-        ){
-
-            span.textContent =
-            "حسابي";
-
-        }
-
-    });
 
 }
 
@@ -4722,11 +4398,9 @@ async function loadOrders(){
 
     }
 
-
     const studentId =
     currentStudent.studentId ||
     currentStudent.id;
-
 
     const result =
     await apiRequest({
@@ -4739,11 +4413,10 @@ async function loadOrders(){
 
     });
 
-
     if(result.success){
 
         renderOrders(
-            result.orders || []
+            result.orders||[]
         );
 
     }else{
@@ -4774,14 +4447,10 @@ function renderOrders(orders){
         <div class="empty">
 
             <div class="empty-icon">
-                <svg>
-                    <use href="#i-orders"></use>
-                </svg>
+                <svg><use href="#i-orders"></use></svg>
             </div>
 
-            <h3>
-                سجل الدخول أولاً
-            </h3>
+            <h3>سجل الدخول أولاً</h3>
 
             <p>
                 لتتمكن من متابعة طلباتك
@@ -4804,7 +4473,6 @@ function renderOrders(orders){
 
     }
 
-
     if(!orders.length){
 
         ordersContainer.innerHTML = `
@@ -4812,14 +4480,10 @@ function renderOrders(orders){
         <div class="empty">
 
             <div class="empty-icon">
-                <svg>
-                    <use href="#i-package"></use>
-                </svg>
+                <svg><use href="#i-package"></use></svg>
             </div>
 
-            <h3>
-                لا توجد طلبات
-            </h3>
+            <h3>لا توجد طلبات</h3>
 
             <p>
                 لم تقم بإنشاء أي طلب حتى الآن
@@ -4842,33 +4506,14 @@ function renderOrders(orders){
 
     }
 
-
     ordersContainer.innerHTML =
     `<div class="orders-list">
         ${
-            orders.map(
-                orderCard
-            ).join("")
+            orders
+            .map(orderCard)
+            .join("")
         }
     </div>`;
-
-
-    document
-    .querySelectorAll(
-        '[data-page="store"]'
-    )
-    .forEach(function(btn){
-
-        btn.addEventListener(
-            "click",
-            function(){
-
-                navigate("store");
-
-            }
-        );
-
-    });
 
 }
 
@@ -4881,38 +4526,23 @@ function orderCard(order){
 
     const status =
     String(
-        order.status ||
+        order.status||
         "جديد"
     );
 
-
-    let statusClass =
-    "new";
-
+    let statusClass="new";
 
     if(status==="قيد التجهيز"){
-
-        statusClass =
-        "preparing";
-
+        statusClass="preparing";
     }
-
 
     if(status==="جاهز للاستلام"){
-
-        statusClass =
-        "ready";
-
+        statusClass="ready";
     }
-
 
     if(status==="مكتمل"){
-
-        statusClass =
-        "done";
-
+        statusClass="done";
     }
-
 
     return `
 
@@ -4925,8 +4555,8 @@ function orderCard(order){
                 <div class="order-number">
                     الطلب #${escapeHtml(
                         String(
-                            order.orderId ||
-                            order.id ||
+                            order.orderId||
+                            order.id||
                             ""
                         )
                     )}
@@ -4935,7 +4565,7 @@ function orderCard(order){
                 <div class="order-date">
                     ${escapeHtml(
                         String(
-                            order.date ||
+                            order.date||
                             ""
                         )
                     )}
@@ -4943,32 +4573,25 @@ function orderCard(order){
 
             </div>
 
-
             <span class="status ${statusClass}">
                 ${escapeHtml(status)}
             </span>
 
         </div>
 
-
         <div class="order-products">
             ${escapeHtml(
-                order.products ||
+                order.products||
                 ""
             )}
         </div>
 
-
         <div class="order-total">
 
-            <span>
-                الإجمالي
-            </span>
+            <span>الإجمالي</span>
 
             <strong>
-                ${formatPrice(
-                    order.total
-                )}
+                ${formatPrice(order.total)}
                 ريال
             </strong>
 
@@ -4996,26 +4619,20 @@ function bindNavigation(){
                 "[data-page]"
             );
 
-            if(!btn) return;
-
+            if(!btn)return;
 
             const page =
             btn.dataset.page;
 
-
-            if(!page) return;
-
+            if(!page)return;
 
             navigate(page);
 
         }
     );
 
-
     document
-    .getElementById(
-        "topCartBtn"
-    )
+    .getElementById("topCartBtn")
     .addEventListener(
         "click",
         function(){
@@ -5034,6 +4651,20 @@ function bindNavigation(){
 
 function navigate(page){
 
+    /*
+       إذا كان مسجلاً وحاول فتح تسجيل الدخول
+       نفتح حسابي بدلاً منه
+    */
+
+    if(
+        page==="login" &&
+        currentStudent
+    ){
+
+        page="profile";
+
+    }
+
     document
     .querySelectorAll(".page")
     .forEach(function(section){
@@ -5044,29 +4675,21 @@ function navigate(page){
 
     });
 
-
     const target =
     document.getElementById(
-        "page-" + page
+        "page-"+page
     );
 
+    if(!target)return;
 
-    if(!target){
+    target.classList.add("active");
 
-        return;
-
-    }
-
-
-    target.classList.add(
-        "active"
-    );
-
+    /*
+       القائمة الجانبية
+    */
 
     document
-    .querySelectorAll(
-        ".menu-item"
-    )
+    .querySelectorAll(".menu-item")
     .forEach(function(item){
 
         item.classList.toggle(
@@ -5076,11 +4699,12 @@ function navigate(page){
 
     });
 
+    /*
+       شريط الجوال
+    */
 
     document
-    .querySelectorAll(
-        ".mobile-nav button"
-    )
+    .querySelectorAll(".mobile-nav button")
     .forEach(function(item){
 
         item.classList.toggle(
@@ -5089,7 +4713,6 @@ function navigate(page){
         );
 
     });
-
 
     const titles = {
 
@@ -5103,54 +4726,42 @@ function navigate(page){
 
         profile:"حسابي",
 
-        login:
-        currentStudent
-        ?"حسابي"
-        :"تسجيل الدخول"
+        login:"تسجيل الدخول"
 
     };
 
-
     document
-    .getElementById(
-        "topbarTitle"
-    )
+    .getElementById("topbarTitle")
     .textContent =
-    titles[page] ||
+    titles[page]||
     "المقصف";
 
-
     if(page==="cart"){
-
         renderCart();
-
     }
-
 
     if(page==="orders"){
-
         loadOrders();
-
     }
-
 
     if(page==="profile"){
-
         renderProfile();
+    }
+
+    if(
+        page==="login" &&
+        !currentStudent
+    ){
+
+        showAuth("login");
 
     }
 
+    /*
+       تحديث الحساب دائماً
+    */
 
-    if(page==="login"){
-
-        if(currentStudent){
-
-            showAuth("login");
-
-        }
-
-    }
-
+    updateLoginButton();
 
     window.scrollTo({
         top:0,
@@ -5171,7 +4782,6 @@ function bindSidebar(){
         "collapseSidebar"
     );
 
-
     collapse.addEventListener(
         "click",
         function(){
@@ -5180,12 +4790,10 @@ function bindSidebar(){
                 "collapsed"
             );
 
-
             const icon =
             collapse.querySelector(
                 "use"
             );
-
 
             if(
                 sidebar.classList.contains(
@@ -5227,19 +4835,15 @@ function showToast(
         "div"
     );
 
-
     toast.className =
-    "toast " + type;
-
+    "toast "+type;
 
     toast.textContent =
     message;
 
-
     toastContainer.appendChild(
         toast
     );
-
 
     setTimeout(
         function(){
@@ -5262,14 +4866,11 @@ function formatPrice(value){
     const number =
     Number(value)||0;
 
-
     return number.toLocaleString(
         "ar-SA",
         {
             minimumFractionDigits:
-            number % 1 === 0
-            ? 0
-            : 2,
+            number%1===0?0:2,
 
             maximumFractionDigits:2
         }
@@ -5285,28 +4886,13 @@ function formatPrice(value){
 function escapeHtml(value){
 
     return String(
-        value ?? ""
+        value??""
     )
-    .replace(
-        /&/g,
-        "&amp;"
-    )
-    .replace(
-        /</g,
-        "&lt;"
-    )
-    .replace(
-        />/g,
-        "&gt;"
-    )
-    .replace(
-        /"/g,
-        "&quot;"
-    )
-    .replace(
-        /'/g,
-        "&#039;"
-    );
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
 
 }
 
